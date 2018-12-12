@@ -26,12 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    mywin.cpp
+    form.cpp
 
 HEADERS += \
         mainwindow.h \
     sql_tool.h \
-    mywin.h
+    form.h
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    res.qrc
