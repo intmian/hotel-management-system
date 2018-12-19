@@ -26,12 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    form.cpp
+    password-verify.cpp
 
 HEADERS += \
         mainwindow.h \
     sql_tool.h \
-    form.h
+    password-verify.h
 
 FORMS += \
         mainwindow.ui
