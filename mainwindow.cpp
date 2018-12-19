@@ -12,9 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     movie = new QMovie(":/images/loading");
     movie->setParent(this);
-    movie->setScaledSize(ui->label->size());
-    ui->label->setMovie(movie);
-    connect(ui->pushButton,&ui->pushButton->clicked,movie,&movie->start);
+    movie->setScaledSize(ui->movie->size());
+    ui->movie->setMovie(movie);
+    movie->start();
+    ui->movie->hide();
+
+    connect(ui->pushButton,&ui->pushButton->clicked,ui->movie,&ui->movie->show);
 
     image = new QImage;
     image->load(":/images/back");
@@ -23,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->back->setPixmap(QPixmap::fromImage(*image));
 
     image = new QImage;
-    image->load(":/images/people");
+    image->load(":/images/people_");
     width = ui->people->width();
     height = ui->people->height();
     *image = image->scaled(width,height);
@@ -69,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton->setStyleSheet("QPushButton{"
                                   "background-color:transparent;"
                                   "font:40px;"                       //字体，字体大小
-                                  "color:rgba(255,255,255,100);"                //字体颜色
+                                  "color:#dcdcdc;"                //字体颜色
                                   "}"
                                   //鼠标按下样式
                                   "QPushButton:pressed{"
@@ -91,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->people->setStyleSheet("background-color:/images/people");
 
     connect(ui->close,&ui->close->clicked,this,&this->close);
-    connect(ui->hide,&ui->hide->clicked,this,&this->minimumWidth);  // TODO WRONG
+    connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
     /*start = new QPushButton("2333",this);
     start->setGeometry(100,100,100,100);
     start->show();
@@ -147,9 +150,9 @@ void MainWindow::mouseReleaseEvent (QMouseEvent *e)
 {
     if(e->pos().rx()>1000 || e->pos().ry()>500)
         return ;
-        int dx = e->globalX() - last.x();
-        int dy = e->globalY() - last.y();
-        move(x()+dx, y()+dy);
+    int dx = e->globalX() - last.x();
+    int dy = e->globalY() - last.y();
+    move(x()+dx, y()+dy);
 }
 
 MainWindow::~MainWindow()
