@@ -40,7 +40,7 @@ private:
 public slots:
     void successful();
     void failed();
-
+    void pause();
 };
 
 #endif // MAINWINDOW_H

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->movie->setMovie(movie);
     movie->start();
     ui->movie->hide();
+    movie->setPaused(true);
 
     connect(ui->pushButton,&ui->pushButton->clicked,this,&this->login);
 
@@ -166,20 +167,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::login()
 {
+    movie->setPaused(false);
     ui->movie->show();
     // TODO 认证
     bool ret = true;
     if (ret)
     {
-        QTimer::singleShot(2000,this,&this->successful);
+        successful();
     }
     else
     {
-        QTimer::singleShot(2000,this,&this->failed);
+        failed();
     }
     // TODO 连接
     // TODO 显示是否正确
-
+    QTimer::singleShot(5000,this,&this->pause);  // 关闭动画
 }
 
 void MainWindow::successful()
@@ -190,4 +192,10 @@ void MainWindow::successful()
 void MainWindow::failed()
 {
     // TODO
+}
+
+void MainWindow::pause()
+{
+    ui->movie->hide();
+    movie->setPaused(true);
 }
