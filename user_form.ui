@@ -13,16 +13,273 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTableView" name="tableView">
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+color:#3f3c37;
+}</string>
+  </property>
+  <widget class="QTabWidget" name="interface_">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>100</y>
-     <width>411</width>
-     <height>451</height>
+     <x>190</x>
+     <y>0</y>
+     <width>581</width>
+     <height>611</height>
     </rect>
    </property>
+   <property name="currentIndex">
+    <number>5</number>
+   </property>
+   <widget class="QWidget" name="room_tab">
+    <attribute name="title">
+     <string>Tab 1</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="in_tab">
+    <attribute name="title">
+     <string>页</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="out_tab">
+    <attribute name="title">
+     <string>页</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="reserve_tab">
+    <attribute name="title">
+     <string>页</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="search_tab">
+    <attribute name="title">
+     <string>页</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="export_tab">
+    <attribute name="title">
+     <string>Tab 2</string>
+    </attribute>
+   </widget>
   </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>50</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="room">
+    <item>
+     <widget class="QPushButton" name="room_button">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>房间</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="room_status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>240</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="searcch">
+    <item>
+     <widget class="QPushButton" name="search_button">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>查询</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="search_status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>200</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="reserve">
+    <item>
+     <widget class="QPushButton" name="reserve_button">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>预约</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="reserve_status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="in">
+    <item>
+     <widget class="QPushButton" name="in_button">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>登记</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="in_status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_6">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="out">
+    <item>
+     <widget class="QPushButton" name="out_button">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>退房</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="out_status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_7">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>290</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="export_">
+    <item>
+     <widget class="QPushButton" name="export_button">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>导出</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="export_status">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="close">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>0</y>
+     <width>31</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>×</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="hide">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>0</y>
+     <width>31</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <zorder>interface_</zorder>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>horizontalLayoutWidget_3</zorder>
+  <zorder>horizontalLayoutWidget_4</zorder>
+  <zorder>horizontalLayoutWidget_5</zorder>
+  <zorder>horizontalLayoutWidget_6</zorder>
+  <zorder>horizontalLayoutWidget_7</zorder>
+  <zorder>hide</zorder>
+  <zorder>close</zorder>
  </widget>
  <resources/>
  <connections/>

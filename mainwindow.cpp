@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     movie->start();
     ui->movie->hide();
 
-    connect(ui->pushButton,&ui->pushButton->clicked,ui->movie,&ui->movie->show);
+    connect(ui->pushButton,&ui->pushButton->clicked,this,&this->login);
 
     image = new QImage;
     image->load(":/images/back");
@@ -88,10 +88,14 @@ MainWindow::MainWindow(QWidget *parent) :
                                   "}"
                      );
 
-    ui->lineEdit->setStyleSheet("QLineEdit{border-width:3px;border-radius:4px;font-size:20px;color:black;border:1px solid gray;}"
-        "QLineEdit:hover{border-width:3px;border-radius:4px;font-size:20px;color:black;border:1px solid rgb(70,200,50);}");
+    ui->lineEdit->setStyleSheet("QLineEdit{border-width:3px;border-radius:20px;font-size:20px;color:black;border:1px solid gray;}"
+        "QLineEdit:hover{border-width:3px;border-radius:20px;font-size:20px;color:black;border:1px solid rgb(70,200,50);}");
 
     ui->people->setStyleSheet("background-color:/images/people");
+
+    ui->label->setStyleSheet("QLabel{"
+                             "color:rgb(255, 255, 255);"
+                             "}");
 
     connect(ui->close,&ui->close->clicked,this,&this->close);
     connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
@@ -158,4 +162,32 @@ void MainWindow::mouseReleaseEvent (QMouseEvent *e)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::login()
+{
+    ui->movie->show();
+    // TODO 认证
+    bool ret = true;
+    if (ret)
+    {
+        QTimer::singleShot(2000,this,&this->successful);
+    }
+    else
+    {
+        QTimer::singleShot(2000,this,&this->failed);
+    }
+    // TODO 连接
+    // TODO 显示是否正确
+
+}
+
+void MainWindow::successful()
+{
+    // TODO
+}
+
+void MainWindow::failed()
+{
+    // TODO
 }

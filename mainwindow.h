@@ -9,6 +9,8 @@
 #include <QMouseEvent>  //引用鼠标类头文件
 #include <qimage.h>
 #include <qpixmap.h>
+#include <QThread>
+#include <QTimer>
 namespace Ui {
 class MainWindow;
 }
@@ -30,9 +32,15 @@ public:
    void mouseMoveEvent(QMouseEvent *e);
    //鼠标释放
    void mouseReleaseEvent(QMouseEvent *e);
+   // 登录事件
+   void login();
 private:
 
     Ui::MainWindow *ui;
+public slots:
+    void successful();
+    void failed();
+
 };
 
 #endif // MAINWINDOW_H
