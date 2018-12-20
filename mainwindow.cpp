@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "user_form.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -97,7 +98,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->label->setStyleSheet("QLabel{"
                              "color:rgb(255, 255, 255);"
                              "}");
+    ui->back->setStyleSheet( "QLabel{"
+                                "border-style:inset;"                  //边框样式（inset/outset）
+                                "border-width:1px;"                     //边框宽度像素
 
+                             "}"
+                             );
     connect(ui->close,&ui->close->clicked,this,&this->close);
     connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
     /*start = new QPushButton("2333",this);
@@ -136,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //鼠标按下
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
-    if(e->pos().rx()>1000 || e->pos().ry()>500)
+    if(e->pos().rx()>292 || e->pos().ry()>391)
         return ;
     last = e->globalPos();
 }
@@ -144,7 +150,7 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 //鼠标移动
 void MainWindow::mouseMoveEvent(QMouseEvent *e)
 {
-    if(e->pos().rx()>1000 || e->pos().ry()>500)
+    if(e->pos().rx()>292 || e->pos().ry()>391)
         return ;
     int dx = e->globalX() - last.x();
     int dy = e->globalY() - last.y();
@@ -153,7 +159,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *e)
 }
 void MainWindow::mouseReleaseEvent (QMouseEvent *e)
 {
-    if(e->pos().rx()>1000 || e->pos().ry()>500)
+    if(e->pos().rx()>292 || e->pos().ry()>391)
         return ;
     int dx = e->globalX() - last.x();
     int dy = e->globalY() - last.y();
@@ -174,18 +180,21 @@ void MainWindow::login()
     if (ret)
     {
         successful();
+        this->close();
     }
     else
     {
         failed();
     }
+    QTimer::singleShot(3000,this,&this->pause);  // 关闭动画
     // TODO 连接
     // TODO 显示是否正确
-    QTimer::singleShot(5000,this,&this->pause);  // 关闭动画
 }
 
 void MainWindow::successful()
 {
+    user_form* uf = new user_form;
+    uf->show();
     // TODO
 }
 

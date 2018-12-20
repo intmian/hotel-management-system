@@ -5,4 +5,11 @@
         <file alias="loading">loading.gif</file>
         <file alias="people_">people_2.png</file>
     </qresource>
+    <qresource prefix="/qss">
+        <file>buttton.qss</file>
+        <file>status.qss</file>
+        <file>widget.qss</file>
+        <file>status_selected.qss</file>
+        <file>button_selected.qss</file>
+    </qresource>
 </RCC>
