@@ -101,9 +101,9 @@ color:rgba(0,0,0,200);
     </property>
     <property name="font">
      <font>
-      <family>微软雅黑</family>
-      <weight>75</weight>
-      <bold>true</bold>
+      <family>幼圆</family>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="cursor">

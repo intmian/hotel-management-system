@@ -90,8 +90,8 @@ MainWindow::MainWindow(QWidget *parent) :
                                   "}"
                      );
 
-    ui->lineEdit->setStyleSheet("QLineEdit{border-width:3px;border-radius:20px;font-size:20px;color:black;border:1px solid gray;}"
-        "QLineEdit:hover{border-width:3px;border-radius:20px;font-size:20px;color:black;border:1px solid rgb(70,200,50);}");
+    ui->lineEdit->setStyleSheet("QLineEdit{border-width:3px;border-radius:20px;border-style:outset;font-size:20px;color:black;border:1px solid gray;}"
+        "QLineEdit:hover{border-width:3px;border-radius:20px;border-style:outset;font-size:20px;color:black;border:1px solid rgb(70,200,50);}");
 
     ui->people->setStyleSheet("background-color:/images/people");
 

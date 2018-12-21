@@ -23,41 +23,49 @@ user_form::user_form(QWidget *parent) :
     // connect area
     ui->close->setStyleSheet("QPushButton{"
                              "background-color:transparent;"
-                             "font:20px;"                       //字体，字体大小
+                             "font:30px;"                       //字体，字体大小
                              "color:rgba(255,255,255,100);"                //字体颜色
                              "}"
                              //鼠标按下样式
                              "QPushButton:pressed{"
                              "background-color:transparent;"
-                             "font:30px;"                       //字体，字体大小
+                             "font:40px;"                       //字体，字体大小
                              "color:#f14c3a;"                //字体颜色
                              "}"
                              //鼠标悬停样式
                              "QPushButton:hover{"
                              "background-color:transparent;"
-                             "font:30px;"                       //字体，字体大小
+                             "font:40px;"                       //字体，字体大小
                              "color:#f14c3a;"                //字体颜色
                              "}"
-                );
+                             );
 
     ui->hide->setStyleSheet("QPushButton{"
                             "background-color:transparent;"
-                            "font:20px;"                       //字体，字体大小
+                            "font:30px;"                       //字体，字体大小
                             "color:rgba(255,255,255,100);"                //字体颜色
                             "}"
                             //鼠标按下样式
                             "QPushButton:pressed{"
                             "background-color:transparent;"
-                            "font:30px;"                       //字体，字体大小
+                            "font:40px;"                       //字体，字体大小
                             "color:#409eff;"                //字体颜色
                             "}"
                             //鼠标悬停样式
                             "QPushButton:hover{"
                             "background-color:transparent;"
-                            "font:30px;"                       //字体，字体大小
+                            "font:40px;"                       //字体，字体大小
                             "color:#409eff;"                //字体颜色
                             "}"
-               );
+                            );
+
+    SetObjectSS(ui->export_button,":/qss/button");
+    SetObjectSS(ui->in_button,":/qss/button");
+    SetObjectSS(ui->out_button,":/qss/button");
+    SetObjectSS(ui->search_button,":/qss/button");
+    SetObjectSS(ui->room_button,":/qss/button");
+    SetObjectSS(ui->reserve_button,":/qss/button");
+
     connect(ui->close,&ui->close->clicked,this,&this->close);
     connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
 }
@@ -88,4 +96,20 @@ void user_form::mouseReleaseEvent (QMouseEvent *e)
     int dx = e->globalX() - last.x();
     int dy = e->globalY() - last.y();
     move(x()+dx, y()+dy);
+}
+
+void user_form::SetObjectSS(QWidget *object_add, QString addr)
+{
+    QFile file(addr);
+    file.open(QFile::ReadOnly);
+    if (file.isOpen())
+    {
+        QString qls(file.readAll());
+        object_add->setStyleSheet(qls);//读取样式表文件
+        file.close();
+    }
+    else
+    {
+        throw "No qss";
+    }
 }

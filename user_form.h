@@ -12,6 +12,7 @@
 #include <qpixmap.h>
 #include <QThread>
 #include <QTimer>
+#include <QWidget>
 namespace Ui {
 class user_form;
 }
@@ -32,6 +33,7 @@ public:
 private:
     QPoint last;
     Ui::user_form *ui;
+    void SetObjectSS(QWidget * object_add, QString addr);
 };
 
 #endif // USER_FORM_H

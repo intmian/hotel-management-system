@@ -1,7 +1,7 @@
 QPushButton{
     background-color:transparent;
     font:20px;
-    color:rgba(255,255,255,100);
+    color:#ffffff;
 }
                          
 QPushButton:pressed{

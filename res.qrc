@@ -6,10 +6,10 @@
         <file alias="people_">people_2.png</file>
     </qresource>
     <qresource prefix="/qss">
-        <file>buttton.qss</file>
-        <file>status.qss</file>
-        <file>widget.qss</file>
-        <file>status_selected.qss</file>
-        <file>button_selected.qss</file>
+        <file alias="button">buttton.qss</file>
+        <file alias="status">status.qss</file>
+        <file alias="widget">widget.qss</file>
+        <file alias="status_s">status_selected.qss</file>
+        <file alias="button_s">button_selected.qss</file>
     </qresource>
 </RCC>
