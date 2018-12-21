@@ -1,13 +1,3 @@
 
-debug/hotel-management-system.exe
-debug/main.o
-debug/mainwindow.o
-debug/moc_mainwindow.cpp
-debug/moc_mainwindow.o
-debug/moc_predefs.h
-debug/moc_user_form.cpp
-debug/moc_user_form.o
-debug/password-verify.o
-debug/qrc_res.cpp
-debug/qrc_res.o
-debug/user_form.o
+debug/
+release/
