@@ -3,7 +3,8 @@
 
 user_form::user_form(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::user_form)
+    ui(new Ui::user_form),
+    use(6)
 {
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
@@ -59,12 +60,33 @@ user_form::user_form(QWidget *parent) :
                             "}"
                             );
 
-    SetObjectSS(ui->export_button,":/qss/button");
+    for(bool &&ifUse:use)
+    {
+        ifUse = false;
+    }
+    use[0] = true;
+    SetObjectSS(ui->room_button,":/qss/button_s");
     SetObjectSS(ui->in_button,":/qss/button");
     SetObjectSS(ui->out_button,":/qss/button");
-    SetObjectSS(ui->search_button,":/qss/button");
-    SetObjectSS(ui->room_button,":/qss/button");
     SetObjectSS(ui->reserve_button,":/qss/button");
+    SetObjectSS(ui->search_button,":/qss/button");
+    SetObjectSS(ui->export_button,":/qss/button");
+
+    SetLabelPic(ui->room_icon,"room_s");
+    SetLabelPic(ui->in_icon,"in");
+    SetLabelPic(ui->out_icon,"out");
+    SetLabelPic(ui->re_icon,"re");
+    SetLabelPic(ui->search_icon,"search");
+    SetLabelPic(ui->export_icon,"export");
+
+    SetStatus(ui->room_status,true);
+    SetStatus(ui->in_status,false);
+    SetStatus(ui->out_status,false);
+    SetStatus(ui->reserve_status,false);
+    SetStatus(ui->search_status,false);
+    SetStatus(ui->export_status,false);
+
+    ui->interface_->tabBar()->hide();
 
     connect(ui->close,&ui->close->clicked,this,&this->close);
     connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
@@ -111,5 +133,27 @@ void user_form::SetObjectSS(QWidget *object_add, QString addr)
     else
     {
         throw "No qss";
+    }
+}
+
+void user_form::SetLabelPic(QLabel *label, QString pic_name)
+{
+    QImage * image = new QImage();
+    image->load(":/icon/"+pic_name);
+    int width = label->width(),height = label->height();
+    *image = image->scaled(width,height);
+    label->setPixmap(QPixmap::fromImage(*image));
+    delete image;
+}
+
+void user_form::SetStatus(QLabel *status, bool ifUse)
+{
+    if(ifUse)
+    {
+        SetObjectSS(status,":/qss/status_s");
+    }
+    else
+    {
+        SetObjectSS(status,":/qss/status");
     }
 }

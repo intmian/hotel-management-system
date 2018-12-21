@@ -12,4 +12,18 @@
         <file alias="status_s">status_selected.qss</file>
         <file alias="button_s">button_selected.qss</file>
     </qresource>
+    <qresource prefix="/icon">
+        <file alias="in">icon/icon/arrow-d.png</file>
+        <file alias="out">icon/icon/arrow-u.png</file>
+        <file alias="export">icon/icon/export.png</file>
+        <file alias="room">icon/icon/house.png</file>
+        <file alias="re">icon/icon/phone.png</file>
+        <file alias="search">icon/icon/search.png</file>
+        <file alias="in_s">icon/icon_s/arrow-d_s.png</file>
+        <file alias="out_s">icon/icon_s/arrow-u_s.png</file>
+        <file alias="export_s">icon/icon_s/export_s.png</file>
+        <file alias="room_s">icon/icon_s/house_s.png</file>
+        <file alias="re_s">icon/icon_s/phone_s.png</file>
+        <file alias="search_s">icon/icon_s/search_s.png</file>
+    </qresource>
 </RCC>

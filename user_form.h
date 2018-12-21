@@ -13,6 +13,8 @@
 #include <QThread>
 #include <QTimer>
 #include <QWidget>
+#include <QLabel>
+#include <vector>
 namespace Ui {
 class user_form;
 }
@@ -33,7 +35,10 @@ public:
 private:
     QPoint last;
     Ui::user_form *ui;
+    std::vector<bool> use;
     void SetObjectSS(QWidget * object_add, QString addr);
+    void SetLabelPic(QLabel * label,QString pic_name);
+    void SetStatus(QLabel * status, bool ifUse);
 };
 
 #endif // USER_FORM_H

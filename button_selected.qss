@@ -1,17 +1,17 @@
 QPushButton{
     background-color:transparent;
-    font:20px;
+    font:25px;
     color:#409eff;
 }
                          
 QPushButton:pressed{
     background-color:transparent;
-    font:30px;
+    font:26px;
     color:#ffffff;
 }
                         
 QPushButton:hover{
     background-color:transparent;
-    font:30px;       
+    font:26px;
     color:#ffffff;
 }
