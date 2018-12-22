@@ -4,6 +4,9 @@
         <file alias="people">people.png</file>
         <file alias="loading">loading.gif</file>
         <file alias="people_">people_2.png</file>
+        <file alias="yes">icon/icon/duigou.png</file>
+        <file alias="no">icon/icon/guanbi.png</file>
+        <file alias="connect_error">icon/icon/lianjiechaoshi.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file alias="button">buttton.qss</file>

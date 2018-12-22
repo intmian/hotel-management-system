@@ -356,7 +356,7 @@ public:
 
         retranslateUi(user_form);
 
-        interface_->setCurrentIndex(4);
+        interface_->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(user_form);

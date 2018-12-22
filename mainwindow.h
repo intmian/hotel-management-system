@@ -13,7 +13,7 @@
 #include <QTimer>
 #include "user_form.h"
 #include "password-verify.h"
-
+#include "sql_tool.h"
 namespace Ui {
 class MainWindow;
 }
@@ -40,11 +40,13 @@ public:
 private:
     user_form* uf;
     Ui::MainWindow *ui;
+    void SetLabelPic(QLabel * label,QString pic_name);
 public slots:
     void successful();
     void failed();
     void pause();
     void open_user_form();
+    void on_button_click();
 };
 
 #endif // MAINWINDOW_H

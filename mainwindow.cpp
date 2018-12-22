@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->movie->hide();
     movie->setPaused(true);
 
-    connect(ui->pushButton,&ui->pushButton->clicked,this,&this->login);
+    connect(ui->pushButton,&ui->pushButton->clicked,this,&this->on_button_click);
 
     image = new QImage;
     image->load(":/images/back");
@@ -146,9 +146,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::login()
 {
-    movie->setPaused(false);
-    ui->movie->show();
-    // TODO 认证
+    pause();
+    if (!OpenDatabase())
+    {
+        QTimer::singleShot(2000,this,&this->pause);  // 关闭动画
+        SetLabelPic(ui->people,"connect_error");
+        return;
+    }
     bool ret = IfPWDRight("pass_word.txt",ui->lineEdit->text());
     if (ret)
     {
@@ -158,18 +162,18 @@ void MainWindow::login()
     {
         failed();
     }
-    QTimer::singleShot(3000,this,&this->pause);  // 关闭动画
+    ui->lineEdit->setText("");
 }
 
 void MainWindow::successful()
 {
-    // TODO SHOW
-    QTimer::singleShot(2000,this,&this->open_user_form);
+    SetLabelPic(ui->people,"yes");
+    QTimer::singleShot(500,this,&this->open_user_form);
 }
 
 void MainWindow::failed()
 {
-    // TODO SHOW
+     SetLabelPic(ui->people,"no");
 }
 
 void MainWindow::pause()
@@ -183,4 +187,20 @@ void MainWindow::open_user_form()
     user_form* uf = new user_form;
     uf->show();
     this->close();
+}
+
+void MainWindow::on_button_click()
+{
+    movie->setPaused(false);
+    ui->movie->show();
+    QTimer::singleShot(1000,this,&this->login);
+}
+void MainWindow::SetLabelPic(QLabel *label, QString pic_name)
+{
+    QImage * image = new QImage();
+    image->load(":/images/"+pic_name);
+    int width = label->width(),height = label->height();
+    *image = image->scaled(width,height);
+    label->setPixmap(QPixmap::fromImage(*image));
+    delete image;
 }

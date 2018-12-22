@@ -210,6 +210,7 @@ Makefile: hotel-management-system.pro D:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/qt_config.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/toolchain.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/default_pre.prf \
@@ -388,6 +389,7 @@ D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/qt_functions.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/qt_config.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-g++/qmake.conf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/exclusive_builds.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/toolchain.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/default_pre.prf:

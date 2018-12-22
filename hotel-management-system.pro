@@ -27,7 +27,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     password-verify.cpp \
-    user_form.cpp
+    user_form.cpp \
+    sql_tool.cpp
 
 HEADERS += \
         mainwindow.h \

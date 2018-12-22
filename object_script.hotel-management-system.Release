@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\password-verify.o
+./release\user_form.o
+./release\sql_tool.o
+./release\dialog_tip.o
+./release\qrc_res.o
+./release\moc_mainwindow.o
+./release\moc_user_form.o
+./release\moc_dialog_tip.o
+);

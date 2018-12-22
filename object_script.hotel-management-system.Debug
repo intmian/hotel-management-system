@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\password-verify.o
+./debug\user_form.o
+./debug\sql_tool.o
+./debug\dialog_tip.o
+./debug\qrc_res.o
+./debug\moc_mainwindow.o
+./debug\moc_user_form.o
+./debug\moc_dialog_tip.o
+);

@@ -97,7 +97,7 @@ public:
         people->setGeometry(QRect(80, 60, 131, 131));
         movie = new QLabel(centralWidget);
         movie->setObjectName(QStringLiteral("movie"));
-        movie->setGeometry(QRect(80, 60, 131, 131));
+        movie->setGeometry(QRect(70, 50, 151, 151));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(100, 10, 91, 16));
