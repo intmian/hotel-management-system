@@ -11,6 +11,9 @@
 #include <qpixmap.h>
 #include <QThread>
 #include <QTimer>
+#include "user_form.h"
+#include "password-verify.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -35,12 +38,13 @@ public:
    // 登录事件
    void login();
 private:
-
+    user_form* uf;
     Ui::MainWindow *ui;
 public slots:
     void successful();
     void failed();
     void pause();
+    void open_user_form();
 };
 
 #endif // MAINWINDOW_H

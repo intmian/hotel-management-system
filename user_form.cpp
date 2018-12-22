@@ -65,6 +65,7 @@ user_form::user_form(QWidget *parent) :
                             "color:#409eff;"                //字体颜色
                             "}"
                             );
+
     // 切换到第一页
     for(bool &&ifUse:use)
     {

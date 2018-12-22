@@ -3,12 +3,15 @@
 #include <QDebug>
 bool IfPWDRight(QString passwordPlace, QString input)
 {
-    QString pwdHash = QCryptographicHash::hash(input.toLocal8Bit(),QCryptographicHash::Algorithm::Sha256);
+    qDebug() << input.toLatin1();
+    QCryptographicHash hash(QCryptographicHash::Sha256);
+    hash.addData(input.toLatin1());
+    QByteArray pwdHash(hash.result().toHex());
     QFile file(passwordPlace);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
            qDebug()<<"Can't open the file!"<<endl;
     }
     QByteArray line = file.readLine();
-    return pwdHash == QString(line);
+    return pwdHash == line;
 }

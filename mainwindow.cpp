@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "user_form.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -140,6 +140,7 @@ void MainWindow::mouseReleaseEvent (QMouseEvent *e)
 
 MainWindow::~MainWindow()
 {
+    delete uf;
     delete ui;
 }
 
@@ -148,35 +149,38 @@ void MainWindow::login()
     movie->setPaused(false);
     ui->movie->show();
     // TODO 认证
-    bool ret = true;
+    bool ret = IfPWDRight("pass_word.txt",ui->lineEdit->text());
     if (ret)
     {
         successful();
-        this->close();
     }
     else
     {
         failed();
     }
     QTimer::singleShot(3000,this,&this->pause);  // 关闭动画
-    // TODO 连接
-    // TODO 显示是否正确
 }
 
 void MainWindow::successful()
 {
-    user_form* uf = new user_form;
-    uf->show();
-    // TODO
+    // TODO SHOW
+    QTimer::singleShot(2000,this,&this->open_user_form);
 }
 
 void MainWindow::failed()
 {
-    // TODO
+    // TODO SHOW
 }
 
 void MainWindow::pause()
 {
     ui->movie->hide();
     movie->setPaused(true);
+}
+
+void MainWindow::open_user_form()
+{
+    user_form* uf = new user_form;
+    uf->show();
+    this->close();
 }
