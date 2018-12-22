@@ -39,6 +39,21 @@ private:
     void SetObjectSS(QWidget * object_add, QString addr);
     void SetLabelPic(QLabel * label,QString pic_name);
     void SetStatus(QLabel * status, bool ifUse);
+    std::vector<QLabel*> icons;
+    std::vector<QLabel*> status;
+    std::vector<QPushButton*> buttons;
+
+    std::vector<QString> icon_add;
+    std::vector<QString> icon_s_add;
+
+public slots:
+    void room_button_click(bool b);
+    void in_button_click(bool b);
+    void out_button_click(bool b);
+    void re_button_click(bool b);
+    void search_button_click(bool b);
+    void export_button_click(bool b);
+    bool translate(int to);  // 判断是否需要转换
 };
 
 #endif // USER_FORM_H

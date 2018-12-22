@@ -11,6 +11,8 @@
         <file alias="widget">widget.qss</file>
         <file alias="status_s">status_selected.qss</file>
         <file alias="button_s">button_selected.qss</file>
+        <file alias="checkBox">check_box.qss</file>
+        <file>general.qss</file>
     </qresource>
     <qresource prefix="/icon">
         <file alias="in">icon/icon/arrow-d.png</file>
@@ -25,5 +27,7 @@
         <file alias="room_s">icon/icon_s/house_s.png</file>
         <file alias="re_s">icon/icon_s/phone_s.png</file>
         <file alias="search_s">icon/icon_s/search_s.png</file>
+        <file alias="check_s">icon/icon/1441292784_170770.png</file>
+        <file alias="check">icon/icon_s/1441292778_351283.png</file>
     </qresource>
 </RCC>

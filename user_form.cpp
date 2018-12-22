@@ -4,11 +4,17 @@
 user_form::user_form(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::user_form),
-    use(6)
+    use(6),
+    icon_add{"room","in","out","re","search","export"},
+    icon_s_add{"room_s","in_s","out_s","re_s","search_s","export_s"}
 {
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
     ui->setupUi(this);
+
+    buttons={ui->room_button,ui->in_button,ui->out_button,ui->reserve_button,ui->search_button,ui->export_button};
+    icons={ui->room_icon,ui->in_icon,ui->out_icon,ui->re_icon,ui->search_icon,ui->export_icon};
+    status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
 
     ui->back->setStyleSheet("QWidget"
                             "{"
@@ -59,12 +65,22 @@ user_form::user_form(QWidget *parent) :
                             "color:#409eff;"                //字体颜色
                             "}"
                             );
-
+    // 切换到第一页
     for(bool &&ifUse:use)
     {
         ifUse = false;
     }
     use[0] = true;
+    ui->interface_->setCurrentIndex(0);
+
+    ui->interface_->setStyleSheet("QTabWidget::pane{top:-1px;}");
+    SetObjectSS(ui->room_tab,":/qss/widget");
+    SetObjectSS(ui->in_tab,":/qss/widget");
+    SetObjectSS(ui->out_tab,":/qss/widget");
+    SetObjectSS(ui->reserve_tab,":/qss/widget");
+    SetObjectSS(ui->search_tab,":/qss/widget");
+    SetObjectSS(ui->export_tab,":/qss/widget");
+
     SetObjectSS(ui->room_button,":/qss/button_s");
     SetObjectSS(ui->in_button,":/qss/button");
     SetObjectSS(ui->out_button,":/qss/button");
@@ -90,6 +106,13 @@ user_form::user_form(QWidget *parent) :
 
     connect(ui->close,&ui->close->clicked,this,&this->close);
     connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
+
+    connect(ui->room_button,&ui->room_button->clicked,this,&this->room_button_click);
+    connect(ui->in_button,&ui->in_button->clicked,this,&this->in_button_click);
+    connect(ui->out_button,&ui->out_button->clicked,this,&this->out_button_click);
+    connect(ui->reserve_button,&ui->reserve_button->clicked,this,&this->re_button_click);
+    connect(ui->search_button,&ui->search_button->clicked,this,&this->search_button_click);
+    connect(ui->export_button,&ui->export_button->clicked,this,&this->export_button_click);
 }
 
 user_form::~user_form()
@@ -156,4 +179,71 @@ void user_form::SetStatus(QLabel *status, bool ifUse)
     {
         SetObjectSS(status,":/qss/status");
     }
+}
+
+void user_form::room_button_click(bool b)
+{
+    if(!translate(0))
+        return;
+    ui->interface_->setCurrentIndex(0);
+}
+
+void user_form::in_button_click(bool b)
+{
+    if(!translate(1))
+        return;
+    ui->interface_->setCurrentIndex(1);
+}
+
+void user_form::out_button_click(bool b)
+{
+    if(!translate(2))
+        return;
+    ui->interface_->setCurrentIndex(2);
+}
+
+void user_form::re_button_click(bool b)
+{
+    if(!translate(3))
+        return;
+    ui->interface_->setCurrentIndex(3);
+}
+
+void user_form::search_button_click(bool b)
+{
+    if(!translate(4))
+        return;
+    ui->interface_->setCurrentIndex(4);
+}
+
+void user_form::export_button_click(bool b)
+{
+    if(!translate(5))
+        return;
+    ui->interface_->setCurrentIndex(5);
+}
+
+bool user_form::translate(int to)
+{
+    int before;
+    for (int i = 0;i != 6;i++)
+    {
+        if (use[i])
+        {
+            before = i;
+            break;
+        }
+    }
+    if (before == to){
+        return false;
+    }
+    use[before] = false;
+    use[to] = true;
+    SetLabelPic(icons[before],icon_add[before]);
+    SetLabelPic(icons[to],icon_s_add[to]);
+    SetObjectSS(buttons[before],":/qss/button");
+    SetObjectSS(buttons[to],":/qss/button_s");
+    SetStatus(status[before],false);
+    SetStatus(status[to],true);
+    return true;
 }

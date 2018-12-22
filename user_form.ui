@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>酒店管理系统</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -26,17 +26,43 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="room_tab">
     <attribute name="title">
      <string>房间</string>
     </attribute>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>150</y>
+       <width>72</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>a</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="in_tab">
     <attribute name="title">
      <string>登记</string>
     </attribute>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>170</y>
+       <width>72</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>b</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="out_tab">
     <attribute name="title">
@@ -149,9 +175,9 @@
    <property name="geometry">
     <rect>
      <x>139</x>
-     <y>360</y>
+     <y>355</y>
      <width>5</width>
-     <height>31</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -183,9 +209,9 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>320</y>
+     <y>315</y>
      <width>5</width>
-     <height>31</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -217,9 +243,9 @@
    <property name="geometry">
     <rect>
      <x>139</x>
-     <y>280</y>
+     <y>275</y>
      <width>5</width>
-     <height>31</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -272,9 +298,9 @@
    <property name="geometry">
     <rect>
      <x>139</x>
-     <y>430</y>
+     <y>425</y>
      <width>5</width>
-     <height>31</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -285,9 +311,9 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>238</y>
+     <y>232</y>
      <width>5</width>
-     <height>31</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -332,9 +358,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>240</y>
-     <width>31</width>
-     <height>31</height>
+     <y>232</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -345,9 +371,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>280</y>
-     <width>31</width>
-     <height>31</height>
+     <y>275</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -358,9 +384,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>320</y>
-     <width>31</width>
-     <height>31</height>
+     <y>315</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -371,9 +397,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>360</y>
-     <width>31</width>
-     <height>31</height>
+     <y>355</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -384,13 +410,38 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>430</y>
-     <width>31</width>
-     <height>31</height>
+     <y>425</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>0</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel
+{
+	color:#ffffff;
+}</string>
+   </property>
+   <property name="text">
+    <string>酒店管理系统1.0</string>
    </property>
   </widget>
   <zorder>back</zorder>
@@ -415,6 +466,7 @@
   <zorder>reserve_status</zorder>
   <zorder>search_status</zorder>
   <zorder>export_status</zorder>
+  <zorder>label_3</zorder>
  </widget>
  <resources/>
  <connections/>
