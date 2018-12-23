@@ -38,7 +38,7 @@ public:
    // 登录事件
    void login();
 private:
-    user_form* uf;
+    SQL sql;
     Ui::MainWindow *ui;
     void SetLabelPic(QLabel * label,QString pic_name);
 public slots:

@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="room_tab">
     <attribute name="title">
@@ -58,6 +58,9 @@
      </property>
      <property name="text">
       <string>是否指定房间号</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit">
@@ -172,6 +175,9 @@
      </property>
      <property name="text">
       <string>是否团体</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_8">

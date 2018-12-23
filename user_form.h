@@ -15,6 +15,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <vector>
+#include "sql_tool.h"
 namespace Ui {
 class user_form;
 }
@@ -33,6 +34,7 @@ public:
     //鼠标释放
     void mouseReleaseEvent(QMouseEvent *e);
 private:
+    SQL sql;
     QPoint last;
     Ui::user_form *ui;
     std::vector<bool> use;

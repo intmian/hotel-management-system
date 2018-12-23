@@ -3,7 +3,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    sql("setting.txt")
 {
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
@@ -140,16 +141,14 @@ void MainWindow::mouseReleaseEvent (QMouseEvent *e)
 
 MainWindow::~MainWindow()
 {
-    delete uf;
     delete ui;
 }
 
 void MainWindow::login()
 {
     pause();
-    if (!OpenDatabase())
+    if (!sql.open())
     {
-        QTimer::singleShot(2000,this,&this->pause);  // 关闭动画
         SetLabelPic(ui->people,"connect_error");
         return;
     }
@@ -184,7 +183,7 @@ void MainWindow::pause()
 
 void MainWindow::open_user_form()
 {
-    user_form* uf = new user_form;
+    user_form *uf = new user_form();
     uf->show();
     this->close();
 }

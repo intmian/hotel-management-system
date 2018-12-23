@@ -115,6 +115,7 @@ public:
         radioButton = new QRadioButton(in_tab);
         radioButton->setObjectName(QStringLiteral("radioButton"));
         radioButton->setGeometry(QRect(40, 50, 151, 31));
+        radioButton->setAutoExclusive(false);
         lineEdit = new QLineEdit(in_tab);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setEnabled(false);
@@ -145,6 +146,7 @@ public:
         radioButton_2 = new QRadioButton(in_tab);
         radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
         radioButton_2->setGeometry(QRect(30, 300, 151, 31));
+        radioButton_2->setAutoExclusive(false);
         lineEdit_8 = new QLineEdit(in_tab);
         lineEdit_8->setObjectName(QStringLiteral("lineEdit_8"));
         lineEdit_8->setEnabled(false);
@@ -356,7 +358,7 @@ public:
 
         retranslateUi(user_form);
 
-        interface_->setCurrentIndex(1);
+        interface_->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(user_form);

@@ -6,7 +6,8 @@ user_form::user_form(QWidget *parent) :
     ui(new Ui::user_form),
     use(6),
     icon_add{"room","in","out","re","search","export"},
-    icon_s_add{"room_s","in_s","out_s","re_s","search_s","export_s"}
+    icon_s_add{"room_s","in_s","out_s","re_s","search_s","export_s"},
+    sql("setting.txt")
 {
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
