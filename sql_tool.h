@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QString>
+#include <QSqlQuery>
 #ifndef SQL_TOOL_H
 #define SQL_TOOL_H
 class SQL

@@ -16,6 +16,7 @@
         <file alias="button_s">button_selected.qss</file>
         <file alias="checkBox">check_box.qss</file>
         <file>general.qss</file>
+        <file alias="line_text">line_text.qss</file>
     </qresource>
     <qresource prefix="/icon">
         <file alias="in">icon/icon/arrow-d.png</file>

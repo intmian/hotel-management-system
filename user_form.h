@@ -15,6 +15,10 @@
 #include <QWidget>
 #include <QLabel>
 #include <vector>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QList>
+
 #include "sql_tool.h"
 namespace Ui {
 class user_form;
@@ -36,6 +40,7 @@ public:
 private:
     SQL sql;
     QPoint last;
+    QStandardItemModel* model;
     Ui::user_form *ui;
     std::vector<bool> use;
     void SetObjectSS(QWidget * object_add, QString addr);
@@ -56,6 +61,8 @@ public slots:
     void search_button_click(bool b);
     void export_button_click(bool b);
     bool translate(int to);  // 判断是否需要转换
+    void updateDataTable();
+    void in_in_click();
 };
 
 #endif // USER_FORM_H

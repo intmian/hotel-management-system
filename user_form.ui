@@ -26,20 +26,23 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="room_tab">
     <attribute name="title">
      <string>房间</string>
     </attribute>
-    <widget class="QTableView" name="tableView">
+    <widget class="QTableView" name="room_table_view">
      <property name="geometry">
       <rect>
-       <x>5</x>
-       <y>11</y>
-       <width>561</width>
+       <x>80</x>
+       <y>10</y>
+       <width>461</width>
        <height>371</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -47,7 +50,7 @@
     <attribute name="title">
      <string>登记</string>
     </attribute>
-    <widget class="QRadioButton" name="radioButton">
+    <widget class="QRadioButton" name="in_roomId_radio">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -63,7 +66,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="in_roomId_text">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -76,7 +79,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="in_level_select">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -125,9 +128,9 @@
       <string>姓名</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="in_id_input">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -137,10 +140,14 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">
+</string>
+     </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="in_name_text">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -151,7 +158,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="in_in">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -161,10 +168,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>登录</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="in_group_radio">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -180,7 +187,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_8">
+    <widget class="QLineEdit" name="in_group_text">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -569,7 +576,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>80</y>
+     <y>60</y>
      <width>5</width>
      <height>30</height>
     </rect>
@@ -585,7 +592,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>75</y>
+     <y>55</y>
      <width>93</width>
      <height>40</height>
     </rect>
@@ -606,7 +613,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>320</y>
+     <y>300</y>
      <width>5</width>
      <height>30</height>
     </rect>
@@ -619,7 +626,7 @@
    <property name="geometry">
     <rect>
      <x>51</x>
-     <y>315</y>
+     <y>295</y>
      <width>93</width>
      <height>40</height>
     </rect>
@@ -640,7 +647,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>260</y>
+     <y>240</y>
      <width>5</width>
      <height>30</height>
     </rect>
@@ -653,7 +660,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>255</y>
+     <y>235</y>
      <width>93</width>
      <height>40</height>
     </rect>
@@ -674,7 +681,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>200</y>
+     <y>180</y>
      <width>5</width>
      <height>30</height>
     </rect>
@@ -687,7 +694,7 @@
    <property name="geometry">
     <rect>
      <x>51</x>
-     <y>195</y>
+     <y>175</y>
      <width>93</width>
      <height>40</height>
     </rect>
@@ -708,7 +715,7 @@
    <property name="geometry">
     <rect>
      <x>51</x>
-     <y>375</y>
+     <y>355</y>
      <width>93</width>
      <height>41</height>
     </rect>
@@ -729,7 +736,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>380</y>
+     <y>360</y>
      <width>5</width>
      <height>30</height>
     </rect>
@@ -742,7 +749,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>140</y>
+     <y>120</y>
      <width>5</width>
      <height>30</height>
     </rect>
@@ -755,7 +762,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>135</y>
+     <y>115</y>
      <width>93</width>
      <height>40</height>
     </rect>
@@ -776,7 +783,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>80</y>
+     <y>60</y>
      <width>30</width>
      <height>30</height>
     </rect>
@@ -789,7 +796,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>140</y>
+     <y>120</y>
      <width>30</width>
      <height>30</height>
     </rect>
@@ -802,7 +809,7 @@
    <property name="geometry">
     <rect>
      <x>31</x>
-     <y>200</y>
+     <y>180</y>
      <width>30</width>
      <height>30</height>
     </rect>
@@ -815,7 +822,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>260</y>
+     <y>240</y>
      <width>30</width>
      <height>30</height>
     </rect>
@@ -828,7 +835,7 @@
    <property name="geometry">
     <rect>
      <x>31</x>
-     <y>320</y>
+     <y>300</y>
      <width>30</width>
      <height>30</height>
     </rect>
@@ -841,7 +848,7 @@
    <property name="geometry">
     <rect>
      <x>31</x>
-     <y>380</y>
+     <y>360</y>
      <width>30</width>
      <height>30</height>
     </rect>

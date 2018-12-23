@@ -17,6 +17,16 @@ user_form::user_form(QWidget *parent) :
     icons={ui->room_icon,ui->in_icon,ui->out_icon,ui->re_icon,ui->search_icon,ui->export_icon};
     status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
 
+    model = new QStandardItemModel(ui->room_table_view);
+    model->setColumnCount(4);
+    model->setHeaderData(0,Qt::Horizontal, "房间号");
+    model->setHeaderData(1,Qt::Horizontal, "房间性质");
+    model->setHeaderData(2,Qt::Horizontal, "姓名");
+    model->setHeaderData(3,Qt::Horizontal, "身份证号");
+    ui->room_table_view->setModel(model);
+    ui->room_table_view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->room_table_view->verticalHeader()->hide();
+
     ui->back->setStyleSheet("QWidget"
                             "{"
                             "   background-color:#3f3c37;"
@@ -74,6 +84,12 @@ user_form::user_form(QWidget *parent) :
     }
     use[0] = true;
     ui->interface_->setCurrentIndex(0);
+    updateDataTable();
+
+    ui->in_level_select->addItem("标间");
+    ui->in_level_select->addItem("二人间");
+    ui->in_level_select->addItem("套房");
+    ui->in_level_select->addItem("豪华套房");
 
     ui->interface_->setStyleSheet("QTabWidget::pane{top:-1px;}");
     SetObjectSS(ui->room_tab,":/qss/widget");
@@ -89,6 +105,11 @@ user_form::user_form(QWidget *parent) :
     SetObjectSS(ui->reserve_button,":/qss/button");
     SetObjectSS(ui->search_button,":/qss/button");
     SetObjectSS(ui->export_button,":/qss/button");
+
+    SetObjectSS(ui->in_id_input,":/qss/line_text");
+    SetObjectSS(ui->in_roomId_text,":/qss/line_text");
+    SetObjectSS(ui->in_name_text,":/qss/line_text");
+    SetObjectSS(ui->in_group_text,":/qss/line_text");
 
     SetLabelPic(ui->room_icon,"room_s");
     SetLabelPic(ui->in_icon,"in");
@@ -115,6 +136,23 @@ user_form::user_form(QWidget *parent) :
     connect(ui->reserve_button,&ui->reserve_button->clicked,this,&this->re_button_click);
     connect(ui->search_button,&ui->search_button->clicked,this,&this->search_button_click);
     connect(ui->export_button,&ui->export_button->clicked,this,&this->export_button_click);
+
+    auto text = ui->in_roomId_text;
+    auto room_level = ui->in_level_select;
+    connect(ui->in_roomId_radio,&ui->in_roomId_radio->toggled,[text,room_level](bool open){text->setEnabled(open);
+        room_level->setEnabled(!open);
+        if(open)
+        {
+            // TODO SHOW 默认
+        }
+        else
+        {
+            room_level->setCurrentIndex(0);
+        }
+    });
+    text = ui->in_group_text;
+    connect(ui->in_group_radio,&ui->in_group_radio->toggled,[text](bool open){text->setEnabled(open);});
+    connect(ui->in_in,&ui->in_in->clicked,this,&in_in_click);
 }
 
 user_form::~user_form()
@@ -182,9 +220,9 @@ void user_form::SetStatus(QLabel *status, bool ifUse)
         SetObjectSS(status,":/qss/status");
     }
 }
-
 void user_form::room_button_click(bool b)
 {
+    updateDataTable();
     if(!translate(0))
         return;
     ui->interface_->setCurrentIndex(0);
@@ -249,3 +287,106 @@ bool user_form::translate(int to)
     SetStatus(status[to],true);
     return true;
 }
+
+void user_form::updateDataTable()
+{
+    // show sql
+    model->removeRows(0,model->rowCount());
+    QSqlQuery qq(sql.db);
+    qq.exec("select room.id,level_price.level_name,people.people_name,people.id from people,live,room,level_price where people.id = live.people_id and room.id = live.room_id and level_price.level = room.level");
+    while(qq.next())
+    {
+        QList<QStandardItem *> list;
+        qDebug()<<qq.value(0).toString() << qq.value(1).toString()<< qq.value(2).toString()<< qq.value(3).toString();
+        for(int i = 0;i < 4;i++)
+        {
+            list.append(new QStandardItem(qq.value(i).toString().trimmed()));
+        }
+        model->appendRow(list);
+    }
+    qq.exec("select room.id,level_price.level_name from room,level_price,if_use where  room.level = level_price.level and room.id = if_use.room_id and if_use.if_use = 0");
+    while(qq.next())
+    {
+        QList<QStandardItem *> list;
+        for(int i = 0;i < 2;i++)
+        {
+            list.append(new QStandardItem(qq.value(i).toString().trimmed()));
+        }
+        model->appendRow(list);
+    }
+}
+
+void user_form::in_in_click()
+{
+    QString people_name = ui->in_name_text->text();
+    QString people_id = ui->in_id_input->text();
+    int level = ui->in_level_select->currentIndex() + 1;
+    int room_id;
+    QString group_name;
+    bool room_select = ui->in_roomId_radio->isChecked();
+    bool group_select = ui->in_group_radio->isChecked();
+    QSqlQuery qq(sql.db);
+    if (room_select)
+    {
+        room_id = ui->in_roomId_text->text().toInt();
+    }
+    if (group_select)
+    {
+        group_name = ui->in_roomId_text->text();
+    }
+
+    if(room_select)
+    {
+        QString check = QString("select if_use.if_use from if_use where if_use.room_id = %1").arg(room_id);
+        qq.exec(check);
+        qq.next();
+        auto empty = qq.value(0).toBool();  // 是否可以填入
+        if(empty)
+        {
+            // TODO show 满
+            return;
+        }
+    }
+
+    if (!room_select)
+    {
+        qq.exec("select room.id,level_price.level from room,level_price,if_use where  room.level = level_price.level and room.id = if_use.room_id and if_use.if_use = 0");
+        while(qq.next())
+        {
+            auto room_id_get = qq.value(0).toInt();
+            auto room_level = qq.value(1).toInt();
+            if (room_level == level)
+            {
+                room_id = room_id_get;
+                break;
+            }
+        }
+    }
+
+    QString cmd;
+    if (group_select)
+         cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7)").arg(
+                    QString(QString::number(room_id)),
+                    people_id,
+                    people_name,
+                    "1",
+                    group_name,
+                    people_id,
+                    QString(QString::number(room_id))
+                    );
+    else
+    {
+        cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7)").arg(
+                    QString(QString::number(room_id)),
+                    people_id,
+                    people_name,
+                    "0",
+                    "NULL",
+                    people_id,
+                    QString(QString::number(room_id))
+                    );
+    }
+    qq.exec(cmd);
+}
+
+
