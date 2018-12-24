@@ -363,7 +363,7 @@ void user_form::in_in_click()
     }
     if (group_select)
     {
-        group_name = ui->in_roomId_text->text();
+        group_name = ui->in_group_text->text();
     }
 
     if(room_select)
