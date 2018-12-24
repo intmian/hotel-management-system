@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -54,11 +55,19 @@ public:
     QLabel *label_13;
     QLabel *out_money;
     QWidget *reserve_tab;
-    QPushButton *pushButton_2;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_5;
+    QPushButton *re_re;
+    QLineEdit *re_id_text;
+    QLineEdit *re_name_text;
     QLabel *label;
     QLabel *label_8;
+    QLabel *label_14;
+    QLineEdit *re_phone;
+    QLineEdit *re_room_text;
+    QLabel *label_15;
+    QPushButton *re_confirm;
+    QFrame *line;
+    QLabel *label_16;
+    QLineEdit *re_id_confirm_text;
     QWidget *search_tab;
     QLabel *label_5;
     QLabel *label_6;
@@ -108,6 +117,7 @@ public:
         interface_ = new QTabWidget(user_form);
         interface_->setObjectName(QStringLiteral("interface_"));
         interface_->setGeometry(QRect(170, 30, 581, 421));
+        interface_->setStyleSheet(QStringLiteral(""));
         room_tab = new QWidget();
         room_tab->setObjectName(QStringLiteral("room_tab"));
         room_table_view = new QTableView(room_tab);
@@ -160,22 +170,23 @@ public:
         interface_->addTab(in_tab, QString());
         out_tab = new QWidget();
         out_tab->setObjectName(QStringLiteral("out_tab"));
+        out_tab->setStyleSheet(QStringLiteral(""));
         label_11 = new QLabel(out_tab);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(60, 100, 72, 15));
+        label_11->setGeometry(QRect(60, 110, 72, 15));
         label_12 = new QLabel(out_tab);
         label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(60, 200, 72, 15));
+        label_12->setGeometry(QRect(60, 210, 72, 15));
         out_out = new QPushButton(out_tab);
         out_out->setObjectName(QStringLiteral("out_out"));
-        out_out->setGeometry(QRect(230, 300, 93, 28));
+        out_out->setGeometry(QRect(180, 300, 231, 61));
         out_group_name_text = new QLineEdit(out_tab);
         out_group_name_text->setObjectName(QStringLiteral("out_group_name_text"));
         out_group_name_text->setEnabled(false);
-        out_group_name_text->setGeometry(QRect(130, 100, 113, 21));
+        out_group_name_text->setGeometry(QRect(130, 100, 221, 41));
         out_id_text = new QLineEdit(out_tab);
         out_id_text->setObjectName(QStringLiteral("out_id_text"));
-        out_id_text->setGeometry(QRect(130, 200, 113, 21));
+        out_id_text->setGeometry(QRect(130, 200, 221, 41));
         out_group_radio = new QRadioButton(out_tab);
         out_group_radio->setObjectName(QStringLiteral("out_group_radio"));
         out_group_radio->setGeometry(QRect(110, 60, 115, 19));
@@ -199,51 +210,78 @@ public:
         interface_->addTab(out_tab, QString());
         reserve_tab = new QWidget();
         reserve_tab->setObjectName(QStringLiteral("reserve_tab"));
-        pushButton_2 = new QPushButton(reserve_tab);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(110, 310, 301, 61));
-        lineEdit_4 = new QLineEdit(reserve_tab);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(160, 80, 211, 41));
-        lineEdit_5 = new QLineEdit(reserve_tab);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
-        lineEdit_5->setGeometry(QRect(160, 210, 211, 41));
+        re_re = new QPushButton(reserve_tab);
+        re_re->setObjectName(QStringLiteral("re_re"));
+        re_re->setGeometry(QRect(20, 310, 271, 61));
+        re_id_text = new QLineEdit(reserve_tab);
+        re_id_text->setObjectName(QStringLiteral("re_id_text"));
+        re_id_text->setGeometry(QRect(40, 50, 211, 41));
+        re_name_text = new QLineEdit(reserve_tab);
+        re_name_text->setObjectName(QStringLiteral("re_name_text"));
+        re_name_text->setGeometry(QRect(40, 120, 211, 41));
         label = new QLabel(reserve_tab);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(40, 90, 72, 15));
+        label->setGeometry(QRect(40, 24, 81, 21));
         label_8 = new QLabel(reserve_tab);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(40, 220, 72, 15));
+        label_8->setGeometry(QRect(40, 94, 71, 21));
+        label_14 = new QLabel(reserve_tab);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setGeometry(QRect(40, 234, 81, 21));
+        re_phone = new QLineEdit(reserve_tab);
+        re_phone->setObjectName(QStringLiteral("re_phone"));
+        re_phone->setGeometry(QRect(40, 260, 211, 41));
+        re_room_text = new QLineEdit(reserve_tab);
+        re_room_text->setObjectName(QStringLiteral("re_room_text"));
+        re_room_text->setGeometry(QRect(40, 190, 211, 41));
+        label_15 = new QLabel(reserve_tab);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(40, 165, 81, 20));
+        label_15->setStyleSheet(QStringLiteral(""));
+        re_confirm = new QPushButton(reserve_tab);
+        re_confirm->setObjectName(QStringLiteral("re_confirm"));
+        re_confirm->setGeometry(QRect(290, 310, 271, 61));
+        line = new QFrame(reserve_tab);
+        line->setObjectName(QStringLiteral("line"));
+        line->setGeometry(QRect(280, 20, 16, 271));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+        label_16 = new QLabel(reserve_tab);
+        label_16->setObjectName(QStringLiteral("label_16"));
+        label_16->setGeometry(QRect(410, 115, 81, 20));
+        re_id_confirm_text = new QLineEdit(reserve_tab);
+        re_id_confirm_text->setObjectName(QStringLiteral("re_id_confirm_text"));
+        re_id_confirm_text->setGeometry(QRect(340, 150, 211, 41));
         interface_->addTab(reserve_tab, QString());
         search_tab = new QWidget();
         search_tab->setObjectName(QStringLiteral("search_tab"));
         label_5 = new QLabel(search_tab);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(60, 60, 72, 15));
+        label_5->setGeometry(QRect(50, 55, 72, 20));
         label_6 = new QLabel(search_tab);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(60, 180, 72, 15));
+        label_6->setGeometry(QRect(51, 154, 81, 21));
         label_7 = new QLabel(search_tab);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(60, 300, 72, 15));
+        label_7->setGeometry(QRect(51, 294, 81, 21));
         lineEdit_11 = new QLineEdit(search_tab);
         lineEdit_11->setObjectName(QStringLiteral("lineEdit_11"));
-        lineEdit_11->setGeometry(QRect(150, 60, 113, 21));
+        lineEdit_11->setGeometry(QRect(102, 40, 201, 41));
         lineEdit_12 = new QLineEdit(search_tab);
         lineEdit_12->setObjectName(QStringLiteral("lineEdit_12"));
-        lineEdit_12->setGeometry(QRect(150, 170, 113, 21));
+        lineEdit_12->setGeometry(QRect(100, 150, 201, 41));
         lineEdit_13 = new QLineEdit(search_tab);
         lineEdit_13->setObjectName(QStringLiteral("lineEdit_13"));
-        lineEdit_13->setGeometry(QRect(160, 300, 113, 21));
+        lineEdit_13->setGeometry(QRect(102, 280, 201, 41));
         pushButton_6 = new QPushButton(search_tab);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         pushButton_6->setGeometry(QRect(160, 110, 93, 28));
         pushButton_7 = new QPushButton(search_tab);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(160, 240, 93, 28));
+        pushButton_7->setGeometry(QRect(170, 240, 93, 28));
         pushButton_8 = new QPushButton(search_tab);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
-        pushButton_8->setGeometry(QRect(180, 330, 93, 28));
+        pushButton_8->setGeometry(QRect(170, 340, 93, 28));
         tableView = new QTableView(search_tab);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setGeometry(QRect(310, 30, 256, 341));
@@ -252,19 +290,19 @@ public:
         export_tab->setObjectName(QStringLiteral("export_tab"));
         pushButton_3 = new QPushButton(export_tab);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(220, 300, 151, 41));
+        pushButton_3->setGeometry(QRect(250, 300, 151, 41));
         lineEdit_6 = new QLineEdit(export_tab);
         lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
-        lineEdit_6->setGeometry(QRect(230, 80, 113, 21));
+        lineEdit_6->setGeometry(QRect(192, 90, 151, 41));
         lineEdit_7 = new QLineEdit(export_tab);
         lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
-        lineEdit_7->setGeometry(QRect(230, 190, 113, 21));
+        lineEdit_7->setGeometry(QRect(192, 190, 151, 41));
         label_9 = new QLabel(export_tab);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(90, 80, 72, 15));
+        label_9->setGeometry(QRect(100, 94, 72, 21));
         label_10 = new QLabel(export_tab);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(100, 200, 72, 15));
+        label_10->setGeometry(QRect(100, 204, 72, 21));
         interface_->addTab(export_tab, QString());
         close = new QPushButton(user_form);
         close->setObjectName(QStringLiteral("close"));
@@ -350,15 +388,12 @@ public:
         export_icon->setGeometry(QRect(31, 360, 30, 30));
         tip = new QLabel(user_form);
         tip->setObjectName(QStringLiteral("tip"));
-        tip->setGeometry(QRect(320, 0, 131, 21));
+        tip->setGeometry(QRect(320, 0, 151, 21));
         QFont font3;
-        font3.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font3.setFamily(QString::fromUtf8("\345\271\274\345\234\206"));
         font3.setPointSize(10);
         tip->setFont(font3);
-        tip->setStyleSheet(QLatin1String("QLabel\n"
-"{\n"
-"	color:#ffffff;\n"
-"}"));
+        tip->setStyleSheet(QStringLiteral(""));
         back->raise();
         interface_->raise();
         hide->raise();
@@ -385,7 +420,7 @@ public:
 
         retranslateUi(user_form);
 
-        interface_->setCurrentIndex(1);
+        interface_->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(user_form);
@@ -413,9 +448,13 @@ public:
         label_13->setText(QApplication::translate("user_form", "\345\272\224\351\200\200\351\207\221\351\242\235", Q_NULLPTR));
         out_money->setText(QString());
         interface_->setTabText(interface_->indexOf(out_tab), QApplication::translate("user_form", "\351\200\200\346\210\277", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("user_form", "\347\241\256\350\256\244", Q_NULLPTR));
+        re_re->setText(QApplication::translate("user_form", "\347\241\256\350\256\244\351\242\204\347\272\246", Q_NULLPTR));
         label->setText(QApplication::translate("user_form", "\350\272\253\344\273\275\350\257\201", Q_NULLPTR));
         label_8->setText(QApplication::translate("user_form", "\345\247\223\345\220\215", Q_NULLPTR));
+        label_14->setText(QApplication::translate("user_form", "\347\224\265\350\257\235", Q_NULLPTR));
+        label_15->setText(QApplication::translate("user_form", "\346\210\277\351\227\264\345\217\267", Q_NULLPTR));
+        re_confirm->setText(QApplication::translate("user_form", "\347\241\256\350\256\244\351\242\204\347\272\246", Q_NULLPTR));
+        label_16->setText(QApplication::translate("user_form", "\350\272\253\344\273\275\350\257\201", Q_NULLPTR));
         interface_->setTabText(interface_->indexOf(reserve_tab), QApplication::translate("user_form", "\351\242\204\347\272\246", Q_NULLPTR));
         label_5->setText(QApplication::translate("user_form", "\350\272\253\344\273\275\350\257\201", Q_NULLPTR));
         label_6->setText(QApplication::translate("user_form", "\345\247\223\345\220\215", Q_NULLPTR));

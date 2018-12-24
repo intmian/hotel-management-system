@@ -18,13 +18,14 @@ user_form::user_form(QWidget *parent) :
     status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
 
     model = new QStandardItemModel(ui->room_table_view);
-    model->setColumnCount(6);
+    model->setColumnCount(7);
     model->setHeaderData(0,Qt::Horizontal, "房间号");
     model->setHeaderData(1,Qt::Horizontal, "房间性质");
     model->setHeaderData(2,Qt::Horizontal, "姓名");
     model->setHeaderData(3,Qt::Horizontal, "身份证号");
     model->setHeaderData(4,Qt::Horizontal, "是否入住");
     model->setHeaderData(5,Qt::Horizontal, "入住时间");
+    model->setHeaderData(6,Qt::Horizontal, "团队");
     ui->room_table_view->setModel(model);
     ui->room_table_view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->room_table_view->verticalHeader()->hide();
@@ -94,12 +95,14 @@ user_form::user_form(QWidget *parent) :
     ui->in_level_select->addItem("豪华套房");
 
     ui->interface_->setStyleSheet("QTabWidget::pane{top:-1px;}");
-    SetObjectSS(ui->room_tab,":/qss/widget");
-    SetObjectSS(ui->in_tab,":/qss/widget");
-    SetObjectSS(ui->out_tab,":/qss/widget");
-    SetObjectSS(ui->reserve_tab,":/qss/widget");
-    SetObjectSS(ui->search_tab,":/qss/widget");
-    SetObjectSS(ui->export_tab,":/qss/widget");
+
+    //SetObjectSS(ui->room_tab,":/qss/widget");  // 全部置黑
+    //SetObjectSS(ui->in_tab,":/qss/widget");
+    //SetObjectSS(ui->out_tab,":/qss/widget");
+    //(ui->reserve_tab,":/qss/widget");
+    //SetObjectSS(ui->search_tab,":/qss/widget");
+    //SetObjectSS(ui->export_tab,":/qss/widget");
+    SetObjectSS(this,":/qss/widget");
 
     SetObjectSS(ui->room_button,":/qss/button_s");
     SetObjectSS(ui->in_button,":/qss/button");
@@ -107,11 +110,6 @@ user_form::user_form(QWidget *parent) :
     SetObjectSS(ui->reserve_button,":/qss/button");
     SetObjectSS(ui->search_button,":/qss/button");
     SetObjectSS(ui->export_button,":/qss/button");
-
-    SetObjectSS(ui->in_id_input,":/qss/line_text");
-    SetObjectSS(ui->in_roomId_text,":/qss/line_text");
-    SetObjectSS(ui->in_name_text,":/qss/line_text");
-    SetObjectSS(ui->in_group_text,":/qss/line_text");
 
     SetLabelPic(ui->room_icon,"room_s");
     SetLabelPic(ui->in_icon,"in");
@@ -168,6 +166,8 @@ user_form::user_form(QWidget *parent) :
     {
         text_group->setEnabled(open);
     });
+    connect(ui->re_re,&ui->re_re->clicked,this,&re_re_click);
+    connect(ui->re_confirm,&ui->re_confirm->clicked,this,&re_confirm_click);
 }
 
 user_form::~user_form()
@@ -308,7 +308,7 @@ void user_form::updateDataTable()
     // show sql
     model->removeRows(0,model->rowCount());
     QSqlQuery qq(sql.db);
-    qq.exec("select room.id,level_price.level_name,people.people_name,people.id,live.date from people,live,room,level_price where people.id = live.people_id and room.id = live.room_id and level_price.level = room.level");
+    qq.exec("select room.id,level_price.level_name,people.people_name,people.id,live.date,people.[group] from people,live,room,level_price where people.id = live.people_id and room.id = live.room_id and level_price.level = room.level");
     while(qq.next())
     {
         QList<QStandardItem *> list;
@@ -319,6 +319,7 @@ void user_form::updateDataTable()
         }
         list.append(new QStandardItem("入住"));
         list.append(new QStandardItem(qq.value(4).toDate().toString("yyyy-MM-dd")));
+        list.append(new QStandardItem(qq.value(5).toString().trimmed()));
         model->appendRow(list);
     }
 
@@ -424,6 +425,7 @@ void user_form::in_in_click()
                     QDateTime::currentDateTime().toString("yy-MM-dd")
                     );
     }
+    qDebug() << cmd;
     qq.exec(cmd);
 }
 
@@ -463,8 +465,74 @@ void user_form::out_out_click()
     }
     if(group_select)
     {
-
+        QString group_name = ui->out_group_name_text->text();
+        int money_together = 0;
+        qq.exec(QString("select level_price.price,live.date from people,live,level_price,room where  people.[group] = '%1' and people.id = live.people_id and live.room_id = room.id and room.level = level_price.level").arg(ui->out_group_name_text->text()));
+        while(qq.next())
+        {
+            money_together += qq.value(0).toInt() * (int)qq.value(1).toDate().daysTo(QDate::currentDate());
+        }
+        QString money_show;
+        if (money_together == 0)
+        {
+            money_show = "0";
+        }
+        else
+        {
+            money_show = money_show.number(money_together);
+            money_show  += "元";
+        }
+        ui->out_money->setText(money_show);
+        QString cmd("update if_use set if_use.if_use = 0 from if_use,live,people where if_use.room_id = live.room_id and  live.people_id = people.id and people.[group] = '%1'");
+        cmd = cmd.arg(group_name);
+        qq.exec(cmd);
+        cmd = "delete from live where live.people_id in (select people.id from people where people.[group] = '%1')";
+        cmd = cmd.arg(group_name);
+        qq.exec(cmd);
+        cmd = "delete from people where people.[group] = '%1'";
+        cmd = cmd.arg(group_name);
+        qq.exec(cmd);
     }
+}
+
+void user_form::re_re_click()
+{
+    QString name = ui->re_name_text->text();
+    QString id = ui->re_id_text->text();
+    QString phone = ui->re_phone->text();
+    QString room = ui->re_room_text->text();
+    QSqlQuery qq;
+    QString check = QString("select if_use.if_use from if_use where if_use.room_id = %1").arg(room);
+    qq.exec(check);
+    qq.next();
+    auto it_is = qq.value(0).toBool();  // 是否可以填入
+    if(it_is)
+    {
+        // TODO show 满
+        return;
+    }
+    QString cmd("insert into people values('%1','%2',0,NULL) insert into reserve values('%3',%4,'%5') update if_use set if_use.if_use = 1 where if_use.room_id = %6");
+    cmd = cmd.arg(id,name,id,room,phone,room);
+    qq.exec(cmd);
+    // TODO SHOW success
+}
+
+void user_form::re_confirm_click()
+{
+    QString id = ui->re_id_confirm_text->text();
+    QString check = QString("select people.people_name,reserve.room_id from reserve,people where reserve.people_id = '%1' and people.id = reserve.people_id").arg(id);
+    QSqlQuery qq;
+    qq.exec(check);
+    if (!qq.next())
+    {
+        // TODO SHOW BAD
+        return ;
+    }
+    QString room = qq.value(1).toString().trimmed();
+    QString cmd = "delete from reserve where reserve.people_id = '%1' insert into live values('%2',%3,'%4')";
+    cmd = cmd.arg(id,id,room,QDate::currentDate().toString("yy-MM-dd"));
+    qDebug() << cmd;
+    qq.exec(cmd);
 }
 
 

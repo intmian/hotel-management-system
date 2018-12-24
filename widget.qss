@@ -1,4 +1,51 @@
-QWidget
+.QWidget
 {
     background-color:#3f3c37;
 }
+QLineEdit
+{
+    border-width:3px;
+    border-radius:20px;
+    border-style:outset;
+    font-size:20px;
+    color:black;
+    border:2px solid gray;
+}
+QLineEdit:hover
+{
+    border-width:3px;
+    border-radius:20px;
+    border-style:outset;
+    font-size:20px;
+    color:black;
+    border:2px solid #409eff;
+}
+.QPushButton{
+    border-style: none;
+    border: 0px;
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius:10px;
+    background: #409eff;
+}
+.QPushButton:hover{
+    color: #409eff;
+    background: #FFFFFF;
+}
+.QPushButton:pressed{
+    color: #FFFFFF;
+    background: #409eff;
+}
+.QLabel
+{
+    color:#f0f0ff;
+    font: 12pt "幼圆";
+}
+.QRadioButton
+{
+    width: 30px;
+    height: 30px;
+    color:#f0f0ff;
+    font: 12pt "幼圆";
+}
+

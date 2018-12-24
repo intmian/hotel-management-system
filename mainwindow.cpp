@@ -146,12 +146,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::login()
 {
+    pause();
     if (!sql.open())
     {
         SetLabelPic(ui->people,"connect_error");
         return;
     }
-    pause();
     bool ret = IfPWDRight("pass_word.txt",ui->lineEdit->text());
     if (ret)
     {

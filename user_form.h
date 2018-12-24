@@ -65,6 +65,8 @@ public slots:
     void updateDataTable();
     void in_in_click();
     void out_out_click();
+    void re_re_click();
+    void re_confirm_click();
 };
 
 #endif // USER_FORM_H
