@@ -18,7 +18,8 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QList>
-
+#include <QDate>
+#include <QDateTime>
 #include "sql_tool.h"
 namespace Ui {
 class user_form;
@@ -63,6 +64,7 @@ public slots:
     bool translate(int to);  // 判断是否需要转换
     void updateDataTable();
     void in_in_click();
+    void out_out_click();
 };
 
 #endif // USER_FORM_H

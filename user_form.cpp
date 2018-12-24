@@ -18,11 +18,13 @@ user_form::user_form(QWidget *parent) :
     status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
 
     model = new QStandardItemModel(ui->room_table_view);
-    model->setColumnCount(4);
+    model->setColumnCount(6);
     model->setHeaderData(0,Qt::Horizontal, "房间号");
     model->setHeaderData(1,Qt::Horizontal, "房间性质");
     model->setHeaderData(2,Qt::Horizontal, "姓名");
     model->setHeaderData(3,Qt::Horizontal, "身份证号");
+    model->setHeaderData(4,Qt::Horizontal, "是否入住");
+    model->setHeaderData(5,Qt::Horizontal, "入住时间");
     ui->room_table_view->setModel(model);
     ui->room_table_view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->room_table_view->verticalHeader()->hide();
@@ -139,7 +141,9 @@ user_form::user_form(QWidget *parent) :
 
     auto text = ui->in_roomId_text;
     auto room_level = ui->in_level_select;
-    connect(ui->in_roomId_radio,&ui->in_roomId_radio->toggled,[text,room_level](bool open){text->setEnabled(open);
+    connect(ui->in_roomId_radio,&ui->in_roomId_radio->toggled,[text,room_level](bool open)
+    {
+        text->setEnabled(open);
         room_level->setEnabled(!open);
         if(open)
         {
@@ -153,6 +157,17 @@ user_form::user_form(QWidget *parent) :
     text = ui->in_group_text;
     connect(ui->in_group_radio,&ui->in_group_radio->toggled,[text](bool open){text->setEnabled(open);});
     connect(ui->in_in,&ui->in_in->clicked,this,&in_in_click);
+    connect(ui->out_out,&ui->out_out->clicked,this,&out_out_click);
+    auto text_people = ui->out_id_text;
+    connect(ui->out_people_radio,&ui->out_people_radio->toggled,[text_people](bool open)
+    {
+        text_people->setEnabled(open);
+    });
+    auto text_group = ui->out_group_name_text;
+    connect(ui->out_group_radio,&ui->out_group_radio->toggled,[text_group](bool open)
+    {
+        text_group->setEnabled(open);
+    });
 }
 
 user_form::~user_form()
@@ -293,7 +308,7 @@ void user_form::updateDataTable()
     // show sql
     model->removeRows(0,model->rowCount());
     QSqlQuery qq(sql.db);
-    qq.exec("select room.id,level_price.level_name,people.people_name,people.id from people,live,room,level_price where people.id = live.people_id and room.id = live.room_id and level_price.level = room.level");
+    qq.exec("select room.id,level_price.level_name,people.people_name,people.id,live.date from people,live,room,level_price where people.id = live.people_id and room.id = live.room_id and level_price.level = room.level");
     while(qq.next())
     {
         QList<QStandardItem *> list;
@@ -302,8 +317,24 @@ void user_form::updateDataTable()
         {
             list.append(new QStandardItem(qq.value(i).toString().trimmed()));
         }
+        list.append(new QStandardItem("入住"));
+        list.append(new QStandardItem(qq.value(4).toDate().toString("yyyy-MM-dd")));
         model->appendRow(list);
     }
+
+    qq.exec("select room.id,level_price.level_name,people.people_name,people.id from room,reserve,people,level_price where  room.id = reserve.room_id and people.id = reserve.people_id and  level_price.level = room.level");
+    while(qq.next())
+    {
+        QList<QStandardItem *> list;
+        qDebug()<<qq.value(0).toString() << qq.value(1).toString()<< qq.value(2).toString()<< qq.value(3).toString();
+        for(int i = 0;i < 4;i++)
+        {
+            list.append(new QStandardItem(qq.value(i).toString().trimmed()));
+        }
+        list.append(new QStandardItem("预约"));
+        model->appendRow(list);
+    }
+
     qq.exec("select room.id,level_price.level_name from room,level_price,if_use where  room.level = level_price.level and room.id = if_use.room_id and if_use.if_use = 0");
     while(qq.next())
     {
@@ -361,32 +392,79 @@ void user_form::in_in_click()
                 break;
             }
         }
+        if(!qq.next())
+        {
+            // TO SHOW 满
+            return;
+        }
     }
 
     QString cmd;
     if (group_select)
-         cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7)").arg(
+         cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7,'%8')").arg(
                     QString(QString::number(room_id)),
                     people_id,
                     people_name,
                     "1",
                     group_name,
                     people_id,
-                    QString(QString::number(room_id))
+                    QString(QString::number(room_id)),
+                    QDateTime::currentDateTime().toString("yy-MM-dd")
                     );
     else
     {
-        cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7)").arg(
+        cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7,'%8')").arg(
                     QString(QString::number(room_id)),
                     people_id,
                     people_name,
                     "0",
                     "NULL",
                     people_id,
-                    QString(QString::number(room_id))
+                    QString(QString::number(room_id)),
+                    QDateTime::currentDateTime().toString("yy-MM-dd")
                     );
     }
     qq.exec(cmd);
+}
+
+void user_form::out_out_click()
+{
+    bool people_select = ui->out_people_radio->isChecked();
+    bool group_select = ui->out_group_radio->isChecked();
+    QSqlQuery qq(sql.db);
+    if (people_select)
+    {
+        QDate before;
+        qq.exec(QString("select live.date from live where live.people_id = '%1'").arg(ui->out_id_text->text()));
+        if(!qq.next())
+        {
+            // TO SHOW no
+            return;
+        }
+        else
+        {
+            before = qq.value(0).toDate();
+        }
+        qq.exec(QString("select level_price.price from live,room,level_price where   live.people_id = '%1' and live.room_id = room.id and room.level = level_price.level").arg(ui->out_id_text->text()));
+        qq.next();
+        int price = qq.value(0).toInt();
+        QString money;
+        money = money.number(price * (int)before.daysTo(QDate::currentDate()));
+        if (price * before.daysTo(QDate::currentDate()) == 0)
+        {
+            money = "0";
+        }
+        ui->out_money->setText(money + " 元");
+        QString cmd = "update if_use set if_use.if_use = 0 from if_use,live where if_use.room_id = live.room_id and live.people_id = '%1' delete from people where people.id = '%2' delete from live where live.people_id = '%3'";
+        cmd = cmd.arg(ui->out_id_text->text(),ui->out_id_text->text(),ui->out_id_text->text());
+        qDebug() << cmd;
+        qq.exec(cmd);
+
+    }
+    if(group_select)
+    {
+
+    }
 }
 
 
