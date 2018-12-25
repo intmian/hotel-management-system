@@ -67,6 +67,9 @@ public slots:
     void out_out_click();
     void re_re_click();
     void re_confirm_click();
+    void search_id_click();
+    void search_name_click();
+    void search_group_click();
 };
 
 #endif // USER_FORM_H

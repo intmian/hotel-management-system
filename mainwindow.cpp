@@ -106,7 +106,11 @@ MainWindow::MainWindow(QWidget *parent) :
                              "}"
                              );
     connect(ui->close,&ui->close->clicked,this,&this->close);
-    connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
+    connect(ui->hide,&ui->hide->clicked,[this](){
+        if( windowState() != Qt::WindowMinimized ){
+            setWindowState( Qt::WindowMinimized );
+        }
+});
 
 }
 

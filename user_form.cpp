@@ -12,7 +12,7 @@ user_form::user_form(QWidget *parent) :
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
     ui->setupUi(this);
-
+    ui->out_money->setAlignment(Qt::AlignVCenter);
     buttons={ui->room_button,ui->in_button,ui->out_button,ui->reserve_button,ui->search_button,ui->export_button};
     icons={ui->room_icon,ui->in_icon,ui->out_icon,ui->re_icon,ui->search_icon,ui->export_icon};
     status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
@@ -128,7 +128,10 @@ user_form::user_form(QWidget *parent) :
     ui->interface_->tabBar()->hide();
 
     connect(ui->close,&ui->close->clicked,this,&this->close);
-    connect(ui->hide,&ui->hide->clicked,[this](){this->setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);});  // TODO WRONG
+    connect(ui->hide,&ui->hide->clicked,[this](){if( windowState() != Qt::WindowMinimized ){
+            setWindowState( Qt::WindowMinimized );
+        }});
+    ui->search_out_text->setFocusPolicy(Qt::NoFocus);
 
     connect(ui->room_button,&ui->room_button->clicked,this,&this->room_button_click);
     connect(ui->in_button,&ui->in_button->clicked,this,&this->in_button_click);
@@ -168,8 +171,11 @@ user_form::user_form(QWidget *parent) :
     });
     connect(ui->re_re,&ui->re_re->clicked,this,&re_re_click);
     connect(ui->re_confirm,&ui->re_confirm->clicked,this,&re_confirm_click);
+    connect(ui->search_name,&ui->search_name->clicked,this,&search_name_click);
+    connect(ui->search_id,&ui->search_id->clicked,this,&search_id_click);
+    connect(ui->search_group,&ui->search_group->clicked,this,&search_group_click);
 }
-
+// add check
 user_form::~user_form()
 {
     delete ui;
@@ -533,6 +539,78 @@ void user_form::re_confirm_click()
     cmd = cmd.arg(id,id,room,QDate::currentDate().toString("yy-MM-dd"));
     qDebug() << cmd;
     qq.exec(cmd);
+}
+
+void user_form::search_id_click()
+{
+    QString id = ui->search_id_text->text();
+    QString cmd = "select *\
+            from people\
+            where people.id= '%1'";
+    cmd = cmd.arg(id);
+    qDebug() << cmd;
+    QSqlQuery qq(sql.db);
+    qq.exec(cmd);
+    if (!qq.next())
+    {
+        return;
+        // SHOW NO
+    }
+    QString output= "身份证:" +qq.value(0).toString().trimmed()+
+            "\n姓名:" + qq.value(1).toString().trimmed();
+    if (qq.value(2).toBool())
+    {
+        output += "\n组织:";
+        output += qq.value(3).toString().trimmed();
+    }
+    ui->search_out_text->insertPlainText(output+"\n");
+}
+
+void user_form::search_name_click()
+{
+    QString name = ui->search_name_text->text();
+    QString cmd =
+"select * \
+from people \
+where people.people_name= '%1'";
+    cmd = cmd.arg(name);
+    qDebug() << cmd;
+    QSqlQuery qq(sql.db);
+    qq.exec(cmd);
+    if (!qq.next())
+    {
+        return;
+        // SHOW NO
+    }
+    QString output= "身份证:" +qq.value(0).toString().trimmed()+
+            "\n姓名:" + qq.value(1).toString().trimmed();
+    if (qq.value(2).toBool())
+    {
+        output += "\n组织:";
+        output += qq.value(3).toString().trimmed();
+    }
+    ui->search_out_text->insertPlainText(output+"\n");
+}
+
+void user_form::search_group_click()
+{
+    QString group = ui->search_group_text->text();
+    QString cmd =
+"select * \
+from people \
+where people.[group]= '%1'";
+    cmd = cmd.arg(group);
+    qDebug() << cmd;
+    QSqlQuery qq(sql.db);
+    qq.exec(cmd);
+    ui->search_out_text->insertPlainText("来自"+group + "的入住者有：");
+    while (qq.next())
+    {
+        QString output= "身份证:" +qq.value(0).toString().trimmed()+
+                "\n姓名:" + qq.value(1).toString().trimmed();
+        ui->search_out_text->insertPlainText(output+"\n");
+    }
+
 }
 
 

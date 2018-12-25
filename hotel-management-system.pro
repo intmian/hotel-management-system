@@ -28,17 +28,20 @@ SOURCES += \
         mainwindow.cpp \
     password-verify.cpp \
     user_form.cpp \
-    sql_tool.cpp
+    sql_tool.cpp \
+    tip.cpp
 
 HEADERS += \
         mainwindow.h \
     sql_tool.h \
     password-verify.h \
-    user_form.h
+    user_form.h \
+    tip.h
 
 FORMS += \
         mainwindow.ui \
-    user_form.ui
+    user_form.ui \
+    tip.ui
 
 RESOURCES += \
     res.qrc
