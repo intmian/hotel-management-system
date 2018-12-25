@@ -9,6 +9,7 @@ user_form::user_form(QWidget *parent) :
     icon_s_add{"room_s","in_s","out_s","re_s","search_s","export_s","setting_s"},
     sql("setting.txt")
 {
+    setWindowIcon(QIcon(":/icon/icon/icon/jiudian.png"));
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
     ui->setupUi(this);
@@ -29,6 +30,13 @@ user_form::user_form(QWidget *parent) :
     ui->room_table_view->setModel(model);
     ui->room_table_view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->room_table_view->verticalHeader()->hide();
+
+    QSqlQuery sqq(sql.db);
+    sqq.exec("select level_price.level_name from level_price");
+    ui->in_level_select->clear();
+    while (sqq.next()) {
+        ui->in_level_select->addItem(sqq.value(0).toString());
+    }
 
     ui->back->setStyleSheet("QWidget"
                             "{"
@@ -130,11 +138,11 @@ user_form::user_form(QWidget *parent) :
     connect(ui->close,&ui->close->clicked,[this](){
         QPropertyAnimation *animation;
         animation = new QPropertyAnimation(this, "windowOpacity");
-        animation->setDuration(1000);
+        animation->setDuration(500);
         animation->setStartValue(1);
         animation->setEndValue(0);
         animation->start();
-        QTimer::singleShot(1000,this,&this->close);
+        QTimer::singleShot(550,this,&this->close);
     });
     connect(ui->hide,&ui->hide->clicked,[this](){if( windowState() != Qt::WindowMinimized ){
             setWindowState( Qt::WindowMinimized );
@@ -304,6 +312,7 @@ void user_form::export_button_click(bool b)
 void user_form::setting_button_click(bool b)
 {
     QInputDialog dia(0);
+    dia.setTextEchoMode(QLineEdit::Password);
     dia.setCancelButtonText("取消");
     dia.setOkButtonText("确认");
     dia.setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
@@ -685,6 +694,9 @@ void user_form::export_export()
     QSqlQuery qSqlQuery(sql.db);
     qSqlQuery.exec("select * from money");
     int money_sum = 0;
+    QAxObject excel("Excel.Application");//连接Excel控件
+    excel.setProperty("Visible", false);// 不显示窗体
+    excel->setProperty("DisplayAlerts", false);  // 不显示任何警告信息。如果为true, 那么关闭时会出现类似"文件已修改，是否保存"的提示
     while(qSqlQuery.next())
     {
         before = qSqlQuery.value(0).toString().trimmed();

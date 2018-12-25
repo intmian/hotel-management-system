@@ -174,7 +174,7 @@ QScrollBar::sub-page:horizontal{
 
 
 QComboBox,QDateEdit,QDateTimeEdit,QTimeEdit,QDoubleSpinBox,QSpinBox{
-        border-radius: 3px;
+        border-radius: 15px;
         padding: 1px 5px 1px 5px;
         border: 1px solid #00beac;
         selection-background-color: #00beac;

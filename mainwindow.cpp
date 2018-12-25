@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     sql("setting.txt")
 {
+    this->setWindowIcon(QIcon(":/icon/login_from"));
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
     ui->setupUi(this);
@@ -108,11 +109,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->close,&ui->close->clicked,[this](){
         QPropertyAnimation *animation;
         animation = new QPropertyAnimation(this, "windowOpacity");
-        animation->setDuration(1000);
+        animation->setDuration(500);
         animation->setStartValue(1);
         animation->setEndValue(0);
         animation->start();
-        QTimer::singleShot(1000,this,&this->close);
+        QTimer::singleShot(550,this,&this->close);
     });
     connect(ui->hide,&ui->hide->clicked,[this](){
         if( windowState() != Qt::WindowMinimized ){
@@ -180,12 +181,12 @@ void MainWindow::successful()
     SetLabelPic(ui->people,"yes");
     QPropertyAnimation *animation;
     animation = new QPropertyAnimation(this, "windowOpacity");
-    animation->setDuration(1000);
+    animation->setDuration(500);
     animation->setStartValue(1);
     animation->setEndValue(0);
     animation->start();
-    QTimer::singleShot(1000,this,&this->close);
-    QTimer::singleShot(1000,this,&this->open_user_form);
+    QTimer::singleShot(550,this,&this->close);
+    QTimer::singleShot(500,this,&this->open_user_form);
 }
 
 void MainWindow::failed()

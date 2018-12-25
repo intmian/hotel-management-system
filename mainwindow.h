@@ -10,6 +10,8 @@
 #include <qimage.h>
 #include <qpixmap.h>
 #include <QThread>
+#include <QIcon>
+#include <QIcon>
 #include <QTimer>
 #include "user_form.h"
 #include "password-verify.h"

@@ -39,5 +39,7 @@
         <file alias="author">image/xiangqing.png</file>
         <file alias="setting_s">icon/icon_s/setting.png</file>
         <file alias="setting">icon/icon/setting.png</file>
+        <file alias="login_from">icon/icon/Login-Form.png</file>
+        <file>icon/icon/jiudian.png</file>
     </qresource>
 </RCC>
