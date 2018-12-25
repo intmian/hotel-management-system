@@ -41,5 +41,6 @@
         <file alias="setting">icon/icon/setting.png</file>
         <file alias="login_from">icon/icon/Login-Form.png</file>
         <file>icon/icon/jiudian.png</file>
+        <file>icon/icon/excel-iocn.png</file>
     </qresource>
 </RCC>

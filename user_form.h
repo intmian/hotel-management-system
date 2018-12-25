@@ -77,6 +77,7 @@ public slots:
     void search_name_click();
     void search_group_click();
     void export_export();
+    void setting_tab_button_setting();
 };
 
 #endif // USER_FORM_H

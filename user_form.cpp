@@ -125,6 +125,7 @@ user_form::user_form(QWidget *parent) :
     SetLabelPic(ui->export_icon,"export");
     SetLabelPic(ui->setting_icon,"setting");
     SetLabelPic(ui->author,"author");
+    SetLabelPic(ui->excel_back,"icon/icon/excel-iocn.png");
     SetStatus(ui->room_status,false);
     SetStatus(ui->in_status,true);
     SetStatus(ui->out_status,false);
@@ -194,9 +195,8 @@ user_form::user_form(QWidget *parent) :
     connect(ui->search_group,&ui->search_group->clicked,this,&search_group_click);
     connect(ui->export_export,&ui->export_export->clicked,this,&this->export_export);
 
-    connect(ui->setting_room_type_but,&ui->setting_room_type_but->clicked,this,&this->update_com);
-    connect(ui->setting_confirm_text,&ui->setting_confirm_text->clicked,this,&this->update_com);
-    connect(ui->setting_confirm_text,&ui->setting_confirm_text->clicked,this,&this->update_com);
+    connect(ui->setting_button,&ui->setting_button->clicked,this,&this->update_com);
+    setting_tab_button_setting();
 }
 // add check
 user_form::~user_form()
@@ -270,8 +270,10 @@ void user_form::update_com()
     QSqlQuery sqq(sql.db);
     sqq.exec("select level_price.level_name from level_price");
     ui->setting_room_type->clear();
+    ui->setting_room_select->clear();
     while (sqq.next()) {
         ui->setting_room_type->addItem(sqq.value(0).toString());
+        ui->setting_room_select->addItem(sqq.value(0).toString());
     }
 }
 void user_form::room_button_click(bool b)
@@ -537,7 +539,7 @@ void user_form::out_out_click()
         qq.exec(cmd);
         cmd = "insert into money \
                 values('%1','%2','%3',%4)";
-                cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
+        cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
         qq.exec(cmd);
     }
     if(group_select)
@@ -746,7 +748,92 @@ void user_form::export_export()
     //QString fileName=QStringLiteral("C:/Users/lixc/Desktop/excel名称.xlsx");
     workbook->dynamicCall("SaveAs(const QString&)", QDir::toNativeSeparators(fileName)); //保存到filepath
     workbook->dynamicCall("Close (Boolean)", false);  //关闭文件
-    excel.dynamicCall("Quit(void)");  //退出
+            excel.dynamicCall("Quit(void)");  //退出
+}
+
+void user_form::setting_tab_button_setting()
+{
+    auto setting_pwd = [=](const QString & pwd,bool admin)  // false 则该user密码
+    {
+        QString hash = QCryptographicHash::hash(pwd.toLatin1(),QCryptographicHash::Sha256).toHex();
+        QString cmd =  "update pass_word \
+set pwd_hash = '%1' \
+where pass_word.level = %2";
+        QSqlQuery qq(sql.db);
+        QString level;
+        if (admin)
+            level = "1";
+        else
+            level = "0";
+        cmd = cmd.arg(hash,level);
+        qDebug() << cmd;
+        qq.exec(cmd);
+    };
+    connect(ui->setting_user_but,&ui->setting_user_but->clicked,[=]
+    {
+        setting_pwd(ui->setting_user_text->text(),false);
+    });
+    connect(ui->setting_admin_but,&ui->setting_admin_but->clicked,[=]
+    {
+        setting_pwd(ui->setting_admin_text->text(),true);
+    });
+    connect(ui->setting_room_type_but,&ui->setting_room_type_but->clicked,[=]
+    {
+        QSqlQuery qq(sql.db);
+        int level = ui->setting_room_type->currentIndex() + 1;
+        QString id = ui->setting_room_id_text->text();
+        QString cmd = "update room \
+set level = %1 \
+where id = %2";
+        cmd = cmd.arg(QString::number(level),id);
+        qDebug() << cmd;
+        qq.exec(cmd);
+    });
+    connect(ui->setting_confirm_text,&ui->setting_confirm_text->clicked,[=]
+    {
+        QSqlQuery qq(sql.db);
+        QString type = ui->setting_add_room_type_text->text();
+        QString price = ui->setting_room_price_text->text();
+        int level = ui->setting_room_select->currentIndex() + 1;
+        bool if_select = ui->setting_select_radio->isChecked();
+        bool if_name = ui->setting_type_radio->isChecked();
+        if (if_name)
+        {
+            qq.exec("select * \
+                    from \
+                    level_price");
+            int n = 0;
+            while (qq.next())
+            {
+                n++;
+            }
+            n++;
+            QString cmd =
+            "insert into level_price \
+values(%1,%2,'%3')";
+            cmd = cmd.arg(QString::number(n),price,type);
+            qq.exec(cmd);
+        }
+        else
+        {
+            QString cmd ="update level_price \
+set price = %1 \
+where level = %2";
+            cmd = cmd.arg(price,QString::number(level));
+            qq.exec(cmd);
+        }
+
+        update_com();
+        ui->setting_room_select->setCurrentIndex(level - 1);
+    });
+    connect(ui->setting_type_radio,&ui->setting_type_radio->toggled,[=](bool b)
+    {
+        ui->setting_room_select->setEnabled(!b);
+    });
+    connect(ui->setting_select_radio,&ui->setting_select_radio->toggled,[=](bool b)
+    {
+        ui->setting_add_room_type_text->setEnabled(!b);
+    });
 }
 
 
