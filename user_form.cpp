@@ -85,8 +85,8 @@ user_form::user_form(QWidget *parent) :
     {
         ifUse = false;
     }
-    use[0] = true;
-    ui->interface_->setCurrentIndex(0);
+    use[1] = true;
+    ui->interface_->setCurrentIndex(1);
     updateDataTable();
 
 
@@ -101,24 +101,24 @@ user_form::user_form(QWidget *parent) :
     //SetObjectSS(ui->export_tab,":/qss/widget");
     SetObjectSS(this,":/qss/widget");
 
-    SetObjectSS(ui->room_button,":/qss/button_s");
-    SetObjectSS(ui->in_button,":/qss/button");
+    SetObjectSS(ui->room_button,":/qss/button");
+    SetObjectSS(ui->in_button,":/qss/button_s");
     SetObjectSS(ui->out_button,":/qss/button");
     SetObjectSS(ui->reserve_button,":/qss/button");
     SetObjectSS(ui->search_button,":/qss/button");
     SetObjectSS(ui->export_button,":/qss/button");
     SetObjectSS(ui->setting_button,":/qss/button");
 
-    SetLabelPic(ui->room_icon,"room_s");
-    SetLabelPic(ui->in_icon,"in");
+    SetLabelPic(ui->room_icon,"room");
+    SetLabelPic(ui->in_icon,"in_s");
     SetLabelPic(ui->out_icon,"out");
     SetLabelPic(ui->re_icon,"re");
     SetLabelPic(ui->search_icon,"search");
     SetLabelPic(ui->export_icon,"export");
     SetLabelPic(ui->setting_icon,"setting");
     SetLabelPic(ui->author,"author");
-    SetStatus(ui->room_status,true);
-    SetStatus(ui->in_status,false);
+    SetStatus(ui->room_status,false);
+    SetStatus(ui->in_status,true);
     SetStatus(ui->out_status,false);
     SetStatus(ui->reserve_status,false);
     SetStatus(ui->search_status,false);
@@ -463,7 +463,7 @@ void user_form::in_in_click()
                     );
     else
     {
-        cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7,'%8')").arg(
+        cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,%5) insert into live values('%6',%7,'%8')").arg(
                     QString(QString::number(room_id)),
                     people_id,
                     people_name,
