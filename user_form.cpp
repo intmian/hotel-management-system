@@ -12,7 +12,7 @@ user_form::user_form(QWidget *parent) :
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
     ui->setupUi(this);
-    ui->out_money->setAlignment(Qt::AlignVCenter);
+    ui->out_money->setAlignment(Qt::AlignCenter);
     buttons={ui->room_button,ui->in_button,ui->out_button,ui->reserve_button,ui->search_button,ui->export_button};
     icons={ui->room_icon,ui->in_icon,ui->out_icon,ui->re_icon,ui->search_icon,ui->export_icon};
     status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
@@ -89,10 +89,7 @@ user_form::user_form(QWidget *parent) :
     ui->interface_->setCurrentIndex(0);
     updateDataTable();
 
-    ui->in_level_select->addItem("标间");
-    ui->in_level_select->addItem("二人间");
-    ui->in_level_select->addItem("套房");
-    ui->in_level_select->addItem("豪华套房");
+
 
     ui->interface_->setStyleSheet("QTabWidget::pane{top:-1px;}");
 
@@ -117,7 +114,7 @@ user_form::user_form(QWidget *parent) :
     SetLabelPic(ui->re_icon,"re");
     SetLabelPic(ui->search_icon,"search");
     SetLabelPic(ui->export_icon,"export");
-
+    SetLabelPic(ui->author,"author");
     SetStatus(ui->room_status,true);
     SetStatus(ui->in_status,false);
     SetStatus(ui->out_status,false);
@@ -127,7 +124,15 @@ user_form::user_form(QWidget *parent) :
 
     ui->interface_->tabBar()->hide();
 
-    connect(ui->close,&ui->close->clicked,this,&this->close);
+    connect(ui->close,&ui->close->clicked,[this](){
+        QPropertyAnimation *animation;
+        animation = new QPropertyAnimation(this, "windowOpacity");
+        animation->setDuration(1000);
+        animation->setStartValue(1);
+        animation->setEndValue(0);
+        animation->start();
+        QTimer::singleShot(1000,this,&this->close);
+    });
     connect(ui->hide,&ui->hide->clicked,[this](){if( windowState() != Qt::WindowMinimized ){
             setWindowState( Qt::WindowMinimized );
         }});
@@ -174,6 +179,7 @@ user_form::user_form(QWidget *parent) :
     connect(ui->search_name,&ui->search_name->clicked,this,&search_name_click);
     connect(ui->search_id,&ui->search_id->clicked,this,&search_id_click);
     connect(ui->search_group,&ui->search_group->clicked,this,&search_group_click);
+    connect(ui->export_export,&ui->export_export->clicked,this,&this->export_export);
 }
 // add check
 user_form::~user_form()
@@ -251,6 +257,12 @@ void user_form::room_button_click(bool b)
 
 void user_form::in_button_click(bool b)
 {
+    QSqlQuery sqq(sql.db);
+    sqq.exec("select level_price.level_name from level_price");
+    ui->in_level_select->clear();
+    while (sqq.next()) {
+        ui->in_level_select->addItem(sqq.value(0).toString());
+    }
     if(!translate(1))
         return;
     ui->interface_->setCurrentIndex(1);
@@ -318,7 +330,7 @@ void user_form::updateDataTable()
     while(qq.next())
     {
         QList<QStandardItem *> list;
-        qDebug()<<qq.value(0).toString() << qq.value(1).toString()<< qq.value(2).toString()<< qq.value(3).toString();
+        qDebug()<<qq.value(0).toString().trimmed() << qq.value(1).toString().trimmed()<< qq.value(2).toString().trimmed()<< qq.value(3).toString().trimmed();
         for(int i = 0;i < 4;i++)
         {
             list.append(new QStandardItem(qq.value(i).toString().trimmed()));
@@ -333,7 +345,7 @@ void user_form::updateDataTable()
     while(qq.next())
     {
         QList<QStandardItem *> list;
-        qDebug()<<qq.value(0).toString() << qq.value(1).toString()<< qq.value(2).toString()<< qq.value(3).toString();
+        qDebug()<<qq.value(0).toString().trimmed() << qq.value(1).toString().trimmed()<< qq.value(2).toString().trimmed()<< qq.value(3).toString().trimmed();
         for(int i = 0;i < 4;i++)
         {
             list.append(new QStandardItem(qq.value(i).toString().trimmed()));
@@ -443,7 +455,8 @@ void user_form::out_out_click()
     if (people_select)
     {
         QDate before;
-        qq.exec(QString("select live.date from live where live.people_id = '%1'").arg(ui->out_id_text->text()));
+        QString id;
+        qq.exec(QString("select live.date,live.people_id from live where live.people_id = '%1'").arg(ui->out_id_text->text()));
         if(!qq.next())
         {
             // TO SHOW no
@@ -452,6 +465,7 @@ void user_form::out_out_click()
         else
         {
             before = qq.value(0).toDate();
+            id= qq.value(1).toString().trimmed();
         }
         qq.exec(QString("select level_price.price from live,room,level_price where   live.people_id = '%1' and live.room_id = room.id and room.level = level_price.level").arg(ui->out_id_text->text()));
         qq.next();
@@ -467,25 +481,38 @@ void user_form::out_out_click()
         cmd = cmd.arg(ui->out_id_text->text(),ui->out_id_text->text(),ui->out_id_text->text());
         qDebug() << cmd;
         qq.exec(cmd);
-
+        cmd = "insert into money \
+values('%1','%2','%3',%4)";
+        cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
+        qq.exec(cmd);
     }
     if(group_select)
     {
         QString group_name = ui->out_group_name_text->text();
         int money_together = 0;
-        qq.exec(QString("select level_price.price,live.date from people,live,level_price,room where  people.[group] = '%1' and people.id = live.people_id and live.room_id = room.id and room.level = level_price.level").arg(ui->out_group_name_text->text()));
+        qq.exec(QString("select level_price.price,live.date,live.people_id from people,live,level_price,room where  people.[group] = '%1' and people.id = live.people_id and live.room_id = room.id and room.level = level_price.level").arg(ui->out_group_name_text->text()));
         while(qq.next())
         {
             money_together += qq.value(0).toInt() * (int)qq.value(1).toDate().daysTo(QDate::currentDate());
+            int money = qq.value(0).toInt() * (int)qq.value(1).toDate().daysTo(QDate::currentDate());
+            QString cmd = "insert into money \
+values('%1','%2','%3',%4)";
+            QString money_ = QString::number(money);
+            if (money == 0)
+                money_ = "0";
+            cmd = cmd.arg(qq.value(1).toDate().toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),qq.value(2).toString().trimmed(),money_);
+            qDebug() << cmd;
+            QSqlQuery qsq(sql.db);
+            qsq.exec(cmd);
         }
         QString money_show;
         if (money_together == 0)
         {
-            money_show = "0";
+            money_show = "共计0元";
         }
         else
         {
-            money_show = money_show.number(money_together);
+            money_show ="共计"+ money_show.number(money_together);
             money_show  += "元";
         }
         ui->out_money->setText(money_show);
@@ -556,7 +583,7 @@ void user_form::search_id_click()
         return;
         // SHOW NO
     }
-    QString output= "身份证:" +qq.value(0).toString().trimmed()+
+    QString output= "\n身份证:" +qq.value(0).toString().trimmed()+
             "\n姓名:" + qq.value(1).toString().trimmed();
     if (qq.value(2).toBool())
     {
@@ -582,7 +609,7 @@ where people.people_name= '%1'";
         return;
         // SHOW NO
     }
-    QString output= "身份证:" +qq.value(0).toString().trimmed()+
+    QString output= "\n身份证:" +qq.value(0).toString().trimmed()+
             "\n姓名:" + qq.value(1).toString().trimmed();
     if (qq.value(2).toBool())
     {
@@ -606,9 +633,29 @@ where people.[group]= '%1'";
     ui->search_out_text->insertPlainText("来自"+group + "的入住者有：");
     while (qq.next())
     {
-        QString output= "身份证:" +qq.value(0).toString().trimmed()+
+        QString output= "\n身份证:" +qq.value(0).toString().trimmed()+
                 "\n姓名:" + qq.value(1).toString().trimmed();
         ui->search_out_text->insertPlainText(output+"\n");
+    }
+
+}
+
+void user_form::export_export()
+{
+    QString before;
+    QString after;
+    QString id;
+    int money;
+    QString name = ui->export_name_text->text();
+    QString where = ui->export_where_text->text();
+    QSqlQuery qSqlQuery(sql.db);
+    qSqlQuery.exec("select * from money");
+    while(qSqlQuery.next())
+    {
+        before = qSqlQuery.value(0).toString().trimmed();
+        after = qSqlQuery.value(1).toString().trimmed();
+        id = qSqlQuery.value(2).toString().trimmed();
+        money = qSqlQuery.value(3).toInt();
     }
 
 }

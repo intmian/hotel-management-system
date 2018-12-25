@@ -82,9 +82,9 @@ public:
     QPushButton *search_group;
     QTextEdit *search_out_text;
     QWidget *export_tab;
-    QPushButton *pushButton_3;
-    QLineEdit *lineEdit_6;
-    QLineEdit *lineEdit_7;
+    QPushButton *export_export;
+    QLineEdit *export_where_text;
+    QLineEdit *export_name_text;
     QLabel *label_9;
     QLabel *label_10;
     QPushButton *close;
@@ -109,6 +109,7 @@ public:
     QLabel *search_icon;
     QLabel *export_icon;
     QLabel *tip;
+    QLabel *author;
 
     void setupUi(QWidget *user_form)
     {
@@ -200,7 +201,7 @@ public:
         out_people_radio->setAutoExclusive(true);
         groupBox = new QGroupBox(out_tab);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(390, 90, 161, 201));
+        groupBox->setGeometry(QRect(390, 60, 161, 201));
         groupBox->setStyleSheet(QString::fromUtf8("QGroupBox {\n"
 "border: 2px solid #409eff;\n"
 "border-radius: 5px;\n"
@@ -316,21 +317,21 @@ public:
         interface_->addTab(search_tab, QString());
         export_tab = new QWidget();
         export_tab->setObjectName(QStringLiteral("export_tab"));
-        pushButton_3 = new QPushButton(export_tab);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(190, 300, 151, 41));
-        lineEdit_6 = new QLineEdit(export_tab);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
-        lineEdit_6->setGeometry(QRect(192, 90, 151, 41));
-        lineEdit_7 = new QLineEdit(export_tab);
-        lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
-        lineEdit_7->setGeometry(QRect(192, 190, 151, 41));
+        export_export = new QPushButton(export_tab);
+        export_export->setObjectName(QStringLiteral("export_export"));
+        export_export->setGeometry(QRect(210, 280, 151, 41));
+        export_where_text = new QLineEdit(export_tab);
+        export_where_text->setObjectName(QStringLiteral("export_where_text"));
+        export_where_text->setGeometry(QRect(180, 60, 201, 41));
+        export_name_text = new QLineEdit(export_tab);
+        export_name_text->setObjectName(QStringLiteral("export_name_text"));
+        export_name_text->setGeometry(QRect(180, 180, 201, 41));
         label_9 = new QLabel(export_tab);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(100, 94, 72, 21));
+        label_9->setGeometry(QRect(180, 30, 81, 21));
         label_10 = new QLabel(export_tab);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(100, 204, 72, 21));
+        label_10->setGeometry(QRect(180, 150, 81, 21));
         interface_->addTab(export_tab, QString());
         close = new QPushButton(user_form);
         close->setObjectName(QStringLiteral("close"));
@@ -422,6 +423,9 @@ public:
         font3.setPointSize(10);
         tip->setFont(font3);
         tip->setStyleSheet(QStringLiteral(""));
+        author = new QLabel(user_form);
+        author->setObjectName(QStringLiteral("author"));
+        author->setGeometry(QRect(10, 430, 20, 20));
         back->raise();
         interface_->raise();
         hide->raise();
@@ -445,10 +449,11 @@ public:
         search_status->raise();
         export_status->raise();
         tip->raise();
+        author->raise();
 
         retranslateUi(user_form);
 
-        interface_->setCurrentIndex(2);
+        interface_->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(user_form);
@@ -492,7 +497,7 @@ public:
         search_name->setText(QApplication::translate("user_form", "\346\237\245\350\257\242", Q_NULLPTR));
         search_group->setText(QApplication::translate("user_form", "\346\237\245\350\257\242", Q_NULLPTR));
         interface_->setTabText(interface_->indexOf(search_tab), QApplication::translate("user_form", "\346\237\245\350\257\242", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("user_form", "\344\270\200\351\224\256\345\257\274\345\207\272", Q_NULLPTR));
+        export_export->setText(QApplication::translate("user_form", "\344\270\200\351\224\256\345\257\274\345\207\272", Q_NULLPTR));
         label_9->setText(QApplication::translate("user_form", "\345\234\260\345\235\200", Q_NULLPTR));
         label_10->setText(QApplication::translate("user_form", "\346\226\207\344\273\266\345\220\215", Q_NULLPTR));
         interface_->setTabText(interface_->indexOf(export_tab), QApplication::translate("user_form", "\345\257\274\345\207\272", Q_NULLPTR));
@@ -518,6 +523,10 @@ public:
         search_icon->setText(QString());
         export_icon->setText(QString());
         tip->setText(QApplication::translate("user_form", "\351\205\222\345\272\227\347\256\241\347\220\206\347\263\273\347\273\2371.0", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        author->setToolTip(QApplication::translate("user_form", "<html><head/><body><p>\344\275\234\350\200\205\357\274\232</p><p>\346\226\271\345\256\266\345\275\246(mian/intmian)</p><p>\351\231\210\344\272\246\350\261\252</p><p>\347\237\245\350\257\206\345\205\261\344\272\253\345\215\217\350\256\256:</p><p>MIT \345\274\200\346\272\220\344\272\216GITHUB</p></body></html>", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        author->setText(QString());
     } // retranslateUi
 
 };

@@ -20,7 +20,10 @@
 #include <QList>
 #include <QDate>
 #include <QDateTime>
+#include <QFileDialog>
+#include <QDir>
 #include "sql_tool.h"
+#include "tip.h"
 namespace Ui {
 class user_form;
 }
@@ -70,6 +73,7 @@ public slots:
     void search_id_click();
     void search_name_click();
     void search_group_click();
+    void export_export();
 };
 
 #endif // USER_FORM_H

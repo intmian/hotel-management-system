@@ -105,13 +105,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
                              "}"
                              );
-    connect(ui->close,&ui->close->clicked,this,&this->close);
+    connect(ui->close,&ui->close->clicked,[this](){
+        QPropertyAnimation *animation;
+        animation = new QPropertyAnimation(this, "windowOpacity");
+        animation->setDuration(1000);
+        animation->setStartValue(1);
+        animation->setEndValue(0);
+        animation->start();
+        QTimer::singleShot(1000,this,&this->close);
+    });
     connect(ui->hide,&ui->hide->clicked,[this](){
         if( windowState() != Qt::WindowMinimized ){
             setWindowState( Qt::WindowMinimized );
         }
-});
-
+    });
 }
 
 
@@ -171,7 +178,14 @@ void MainWindow::login()
 void MainWindow::successful()
 {
     SetLabelPic(ui->people,"yes");
-    QTimer::singleShot(500,this,&this->open_user_form);
+    QPropertyAnimation *animation;
+    animation = new QPropertyAnimation(this, "windowOpacity");
+    animation->setDuration(1000);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->start();
+    QTimer::singleShot(1000,this,&this->close);
+    QTimer::singleShot(1000,this,&this->open_user_form);
 }
 
 void MainWindow::failed()
@@ -189,6 +203,7 @@ void MainWindow::open_user_form()
 {
     user_form *uf = new user_form();
     uf->show();
+
     this->close();
 }
 

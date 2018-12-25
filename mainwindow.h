@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include <QPropertyAnimation>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QDebug>

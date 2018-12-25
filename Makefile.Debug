@@ -49,26 +49,32 @@ SOURCES       = main.cpp \
 		mainwindow.cpp \
 		password-verify.cpp \
 		user_form.cpp \
-		sql_tool.cpp debug\qrc_res.cpp \
+		sql_tool.cpp \
+		tip.cpp debug\qrc_res.cpp \
 		debug\moc_mainwindow.cpp \
-		debug\moc_user_form.cpp
+		debug\moc_user_form.cpp \
+		debug\moc_tip.cpp
 OBJECTS       = debug/main.o \
 		debug/mainwindow.o \
 		debug/password-verify.o \
 		debug/user_form.o \
 		debug/sql_tool.o \
+		debug/tip.o \
 		debug/qrc_res.o \
 		debug/moc_mainwindow.o \
-		debug/moc_user_form.o
+		debug/moc_user_form.o \
+		debug/moc_tip.o
 
 DIST          =  mainwindow.h \
 		sql_tool.h \
 		password-verify.h \
-		user_form.h main.cpp \
+		user_form.h \
+		tip.h main.cpp \
 		mainwindow.cpp \
 		password-verify.cpp \
 		user_form.cpp \
-		sql_tool.cpp
+		sql_tool.cpp \
+		tip.cpp
 QMAKE_TARGET  = hotel-management-system
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = hotel-management-system.exe
@@ -79,8 +85,8 @@ DESTDIR_TARGET = debug\hotel-management-system.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_user_form.h $(OBJECTS) 
-	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+$(DESTDIR_TARGET): ui_mainwindow.h ui_user_form.h ui_tip.h $(OBJECTS) 
+	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.hotel-management-system.Debug  $(LIBS)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug hotel-management-system.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -88,10 +94,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) hotel-management-system.zip $(SOURCES) $(DIST) hotel-management-system.pro D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\spec_pre.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\qdevice.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\device_config.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\sanitize.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\gcc-base.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\g++-base.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\angle.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\qconfig.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3danimation.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3danimation_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3drender.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axbase.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axserver.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_charts.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_core.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_core_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_dbus.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_designer.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gui.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_help.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_help_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_location.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_location_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_network.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_network_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_networkauth.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_networkauth_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_nfc.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_opengl.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_positioning.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qml.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quick.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_remoteobjects.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_repparser.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_repparser_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_script.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_script_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scxml.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sensors.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialport.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sql.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_svg.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_testlib.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_texttospeech.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_texttospeech_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_uitools.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_websockets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_widgets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_winextras.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xml.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qt_functions.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qt_config.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\win32-g++\qmake.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\exclusive_builds.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\toolchain.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\default_pre.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\win32\default_pre.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\resolve_config.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\exclusive_builds_post.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\default_post.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\build_pass.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qml_debug.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\precompile_header.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\warn_on.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qt.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\resources.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\moc.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\win32\opengl.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\uic.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qmake_use.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\file_copies.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\win32\windows.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\testcase_targets.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\exceptions.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\yacc.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\lex.prf hotel-management-system.pro res.qrc D:\soft\qt\5.9.6\mingw53_32\lib\qtmaind.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Widgetsd.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Guid.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Sqld.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Cored.prl   res.qrc D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\data\dummy.cpp mainwindow.h sql_tool.h password-verify.h user_form.h main.cpp mainwindow.cpp password-verify.cpp user_form.cpp sql_tool.cpp mainwindow.ui user_form.ui    
+	$(ZIP) hotel-management-system.zip $(SOURCES) $(DIST) hotel-management-system.pro D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\spec_pre.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\qdevice.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\device_config.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\sanitize.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\gcc-base.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\g++-base.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\common\angle.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\qconfig.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3danimation.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3danimation_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3drender.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axbase.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axserver.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_charts.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_core.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_core_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_dbus.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_designer.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_egl_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_fb_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gui.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_help.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_help_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_location.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_location_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_network.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_network_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_networkauth.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_networkauth_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_nfc.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_opengl.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_positioning.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qml.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quick.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_remoteobjects.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_remoteobjects_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_repparser.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_repparser_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_script.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_script_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scxml.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sensors.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialport.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sql.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_svg.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_testlib.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_texttospeech.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_texttospeech_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_theme_support_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_uitools.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_websockets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_widgets.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_winextras.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xml.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qt_functions.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qt_config.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\win32-g++\qmake.conf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\exclusive_builds.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\toolchain.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\default_pre.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\win32\default_pre.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\resolve_config.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\exclusive_builds_post.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\default_post.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\build_pass.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qml_debug.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\precompile_header.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\warn_on.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qt.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\resources.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\moc.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\win32\opengl.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\uic.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\qmake_use.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\file_copies.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\win32\windows.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\testcase_targets.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\exceptions.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\yacc.prf D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\lex.prf hotel-management-system.pro res.qrc D:\soft\qt\5.9.6\mingw53_32\lib\qtmaind.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Widgetsd.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Guid.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Sqld.prl D:\soft\qt\5.9.6\mingw53_32\lib\Qt5Cored.prl   res.qrc D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\data\dummy.cpp mainwindow.h sql_tool.h password-verify.h user_form.h tip.h main.cpp mainwindow.cpp password-verify.cpp user_form.cpp sql_tool.cpp tip.cpp mainwindow.ui user_form.ui tip.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\password-verify.o debug\user_form.o debug\sql_tool.o debug\qrc_res.o debug\moc_mainwindow.o debug\moc_user_form.o
+	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\password-verify.o debug\user_form.o debug\sql_tool.o debug\tip.o debug\qrc_res.o debug\moc_mainwindow.o debug\moc_user_form.o debug\moc_tip.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -116,10 +122,12 @@ debug/qrc_res.cpp: res.qrc \
 		icon/icon/duigou.png \
 		icon/icon/guanbi.png \
 		people.png \
+		image/duiqi06.png \
 		back.png \
 		icon/icon/lianjiechaoshi.png \
 		people_2.png \
 		loading.gif \
+		image/LC_icon_down_fill.png \
 		icon/icon/1441292784_170770.png \
 		icon/icon_s/export_s.png \
 		icon/icon/search.png \
@@ -136,6 +144,7 @@ debug/qrc_res.cpp: res.qrc \
 		icon/icon/arrow-u.png \
 		widget.qss \
 		button_selected.qss \
+		line_text.qss \
 		general.qss \
 		status.qss \
 		status_selected.qss \
@@ -149,9 +158,9 @@ compiler_moc_predefs_clean:
 debug/moc_predefs.h: D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -g -std=gnu++11 -Wall -W -Wextra -dM -E -o debug\moc_predefs.h D:\soft\qt\5.9.6\mingw53_32\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_user_form.cpp
+compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_user_form.cpp debug/moc_tip.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_user_form.cpp
+	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_user_form.cpp debug\moc_tip.cpp
 debug/moc_mainwindow.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMainWindow \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
@@ -282,10 +291,14 @@ debug/moc_mainwindow.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMainWin
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLabel \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlabel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qframe.h \
-		password-verify.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItemModel \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItem \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QList \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDate \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatetime.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDateTime \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
@@ -295,6 +308,10 @@ debug/moc_mainwindow.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMainWin
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdialog.h \
 		mainwindow.h \
+		password-verify.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlDatabase \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqldatabase.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qtsqlglobal.h \
@@ -302,6 +319,8 @@ debug/moc_mainwindow.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMainWin
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlError \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
 		mainwindow.h \
 		debug/moc_predefs.h \
 		D:/soft/qt/5.9.6/mingw53_32/bin/moc.exe
@@ -436,16 +455,153 @@ debug/moc_user_form.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLabel \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlabel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qframe.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItemModel \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItem \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QList \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDate \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatetime.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDateTime \
+		sql_tool.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdialog.h \
+		mainwindow.h \
+		user_form.h \
+		password-verify.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlDatabase \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqldatabase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qtsqlglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMessageBox \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlError \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
 		user_form.h \
 		debug/moc_predefs.h \
 		D:/soft/qt/5.9.6/mingw53_32/bin/moc.exe
 	D:\soft\qt\5.9.6\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-g++ -IC:/file/qt/hotel-management-system -ID:/soft/qt/5.9.6/mingw53_32/include -ID:/soft/qt/5.9.6/mingw53_32/include/QtWidgets -ID:/soft/qt/5.9.6/mingw53_32/include/QtGui -ID:/soft/qt/5.9.6/mingw53_32/include/QtANGLE -ID:/soft/qt/5.9.6/mingw53_32/include/QtSql -ID:/soft/qt/5.9.6/mingw53_32/include/QtCore -ID:/soft/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -ID:/soft/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward user_form.h -o debug\moc_user_form.cpp
 
+debug/moc_tip.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtwidgets-config.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpaintdevice.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpalette.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qcolor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qrgb.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qrgba64.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qbrush.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qmatrix.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpolygon.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qline.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtransform.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpainterpath.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qimage.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpixelformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpixmap.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qfont.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qfontmetrics.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qfontinfo.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qset.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		tip.h \
+		debug/moc_predefs.h \
+		D:/soft/qt/5.9.6/mingw53_32/bin/moc.exe
+	D:\soft\qt\5.9.6\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -ID:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-g++ -IC:/file/qt/hotel-management-system -ID:/soft/qt/5.9.6/mingw53_32/include -ID:/soft/qt/5.9.6/mingw53_32/include/QtWidgets -ID:/soft/qt/5.9.6/mingw53_32/include/QtGui -ID:/soft/qt/5.9.6/mingw53_32/include/QtANGLE -ID:/soft/qt/5.9.6/mingw53_32/include/QtSql -ID:/soft/qt/5.9.6/mingw53_32/include/QtCore -ID:/soft/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -ID:/soft/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -ID:/soft/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward tip.h -o debug\moc_tip.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_user_form.h
+compiler_uic_make_all: ui_mainwindow.h ui_user_form.h ui_tip.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_user_form.h
+	-$(DEL_FILE) ui_mainwindow.h ui_user_form.h ui_tip.h
 ui_mainwindow.h: mainwindow.ui \
 		D:/soft/qt/5.9.6/mingw53_32/bin/uic.exe
 	D:\soft\qt\5.9.6\mingw53_32\bin\uic.exe mainwindow.ui -o ui_mainwindow.h
@@ -453,6 +609,10 @@ ui_mainwindow.h: mainwindow.ui \
 ui_user_form.h: user_form.ui \
 		D:/soft/qt/5.9.6/mingw53_32/bin/uic.exe
 	D:\soft\qt\5.9.6\mingw53_32\bin\uic.exe user_form.ui -o ui_user_form.h
+
+ui_tip.h: tip.ui \
+		D:/soft/qt/5.9.6/mingw53_32/bin/uic.exe
+	D:\soft\qt\5.9.6\mingw53_32\bin\uic.exe tip.ui -o ui_tip.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -597,10 +757,14 @@ debug/main.o: main.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLabel \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlabel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qframe.h \
-		password-verify.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItemModel \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItem \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QList \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDate \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatetime.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDateTime \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
@@ -615,7 +779,13 @@ debug/main.o: main.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMessageBox \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlError \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
+		password-verify.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -749,10 +919,14 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLabel \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlabel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qframe.h \
-		password-verify.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItemModel \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItem \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QList \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDate \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatetime.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDateTime \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
@@ -768,6 +942,12 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlError \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
+		password-verify.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
 		ui_mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QVariant \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QAction \
@@ -779,7 +959,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qheaderview.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qabstractitemview.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qitemselectionmodel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qstyleoption.h \
@@ -999,16 +1178,41 @@ debug/user_form.o: user_form.cpp user_form.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLabel \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlabel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qframe.h \
-		ui_user_form.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QVariant \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QAction \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qaction.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qactiongroup.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItemModel \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItem \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QList \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDate \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatetime.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDateTime \
+		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdesktopwidget.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qguiapplication.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdialog.h \
+		mainwindow.h \
+		password-verify.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlDatabase \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqldatabase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qtsqlglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMessageBox \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlError \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
+		ui_user_form.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QVariant \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QAction \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qaction.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qactiongroup.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QButtonGroup \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qbuttongroup.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QComboBox \
@@ -1023,7 +1227,9 @@ debug/user_form.o: user_form.cpp user_form.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qstyle.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtabbar.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qrubberband.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QFrame \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QGroupBox \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qgroupbox.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QHeaderView \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qheaderview.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qabstractitemview.h \
@@ -1039,7 +1245,10 @@ debug/user_form.o: user_form.cpp user_form.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qradiobutton.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QTabWidget \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QTableView \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtableview.h
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtableview.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QTextEdit \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtextedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextdocument.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\user_form.o user_form.cpp
 
 debug/sql_tool.o: sql_tool.cpp sql_tool.h \
@@ -1181,6 +1390,14 @@ debug/sql_tool.o: sql_tool.cpp sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLabel \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlabel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qframe.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItemModel \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QStandardItem \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QList \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDate \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatetime.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QDateTime \
 		password-verify.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
@@ -1191,8 +1408,116 @@ debug/sql_tool.o: sql_tool.cpp sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QMessageBox \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlError \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlerror.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QTextStream
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\sql_tool.o sql_tool.cpp
+
+debug/tip.o: tip.cpp tip.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtwidgets-config.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpaintdevice.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpalette.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qcolor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qrgb.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qrgba64.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qbrush.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qmatrix.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpolygon.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qline.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtransform.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpainterpath.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qimage.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpixelformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpixmap.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qfont.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qfontmetrics.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qfontinfo.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qset.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		ui_tip.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\tip.o tip.cpp
 
 debug/qrc_res.o: debug/qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_res.o debug\qrc_res.cpp
@@ -1202,6 +1527,9 @@ debug/moc_mainwindow.o: debug/moc_mainwindow.cpp
 
 debug/moc_user_form.o: debug/moc_user_form.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_user_form.o debug\moc_user_form.cpp
+
+debug/moc_tip.o: debug/moc_tip.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_tip.o debug\moc_tip.cpp
 
 ####### Install
 

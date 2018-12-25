@@ -35,5 +35,6 @@
         <file alias="search_s">icon/icon_s/search_s.png</file>
         <file alias="check_s">icon/icon/1441292784_170770.png</file>
         <file alias="check">icon/icon_s/1441292778_351283.png</file>
+        <file alias="author">image/xiangqing.png</file>
     </qresource>
 </RCC>

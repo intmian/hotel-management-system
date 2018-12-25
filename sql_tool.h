@@ -1,3 +1,4 @@
+#include <QPropertyAnimation>
 #include <QApplication>
 #include <QDialog>
 #include "mainwindow.h"

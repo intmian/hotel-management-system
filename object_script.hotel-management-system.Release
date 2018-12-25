@@ -4,9 +4,9 @@ INPUT(
 ./release\password-verify.o
 ./release\user_form.o
 ./release\sql_tool.o
-./release\dialog_tip.o
+./release\tip.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_user_form.o
-./release\moc_dialog_tip.o
+./release\moc_tip.o
 );
