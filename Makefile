@@ -226,6 +226,7 @@ Makefile: hotel-management-system.pro D:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/moc.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/win32/opengl.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/uic.prf \
+		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/win32/dumpcpp.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/qmake_use.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/file_copies.prf \
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/win32/windows.prf \
@@ -235,6 +236,8 @@ Makefile: hotel-management-system.pro D:/soft/qt/5.9.6/mingw53_32/mkspecs/win32-
 		D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/lex.prf \
 		hotel-management-system.pro \
 		D:/soft/qt/5.9.6/mingw53_32/lib/qtmaind.prl \
+		D:/soft/qt/5.9.6/mingw53_32/lib/Qt5AxContainer.prl \
+		D:/soft/qt/5.9.6/mingw53_32/lib/Qt5AxBase.prl \
 		D:/soft/qt/5.9.6/mingw53_32/lib/Qt5Widgets.prl \
 		D:/soft/qt/5.9.6/mingw53_32/lib/Qt5Gui.prl \
 		D:/soft/qt/5.9.6/mingw53_32/lib/Qt5Sql.prl \
@@ -405,6 +408,7 @@ D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/resources.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/moc.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/win32/opengl.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/uic.prf:
+D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/win32/dumpcpp.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/qmake_use.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/file_copies.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/win32/windows.prf:
@@ -414,6 +418,8 @@ D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/yacc.prf:
 D:/soft/qt/5.9.6/mingw53_32/mkspecs/features/lex.prf:
 hotel-management-system.pro:
 D:/soft/qt/5.9.6/mingw53_32/lib/qtmaind.prl:
+D:/soft/qt/5.9.6/mingw53_32/lib/Qt5AxContainer.prl:
+D:/soft/qt/5.9.6/mingw53_32/lib/Qt5AxBase.prl:
 D:/soft/qt/5.9.6/mingw53_32/lib/Qt5Widgets.prl:
 D:/soft/qt/5.9.6/mingw53_32/lib/Qt5Gui.prl:
 D:/soft/qt/5.9.6/mingw53_32/lib/Qt5Sql.prl:

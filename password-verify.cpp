@@ -1,17 +1,19 @@
 #include "password-verify.h"
-#include <QFile>
-#include <QDebug>
-bool IfPWDRight(QString passwordPlace, QString input)
+bool IfPWDRight(QString input,QSqlQuery qq, bool admin = false)
 {
     qDebug() << input.toLatin1();
-    QCryptographicHash hash(QCryptographicHash::Sha256);
-    hash.addData(input.toLatin1());
-    QByteArray pwdHash(hash.result().toHex());
-    QFile file(passwordPlace);
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(!admin)
+        qq.exec("select pwd_hash \
+from pass_word \
+where level = 0");
+    else
     {
-           qDebug()<<"Can't open the file!"<<endl;
+        qq.exec("select pwd_hash \
+from pass_word \
+where level = 1");
     }
-    QByteArray line = file.readLine();
-    return pwdHash == line;
+    qq.next();
+    auto hash = QCryptographicHash::hash(input.toLatin1(),QCryptographicHash::Sha256).toHex();
+    auto right_hash = qq.value(0).toString().trimmed().toLatin1();
+    return right_hash == hash;
 }

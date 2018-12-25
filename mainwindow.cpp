@@ -163,7 +163,7 @@ void MainWindow::login()
         SetLabelPic(ui->people,"connect_error");
         return;
     }
-    bool ret = IfPWDRight("pass_word.txt",ui->lineEdit->text());
+    bool ret = IfPWDRight(ui->lineEdit->text(),QSqlQuery(sql.db),false);
     if (ret)
     {
         successful();

@@ -1,0 +1,57 @@
+.QWidget
+{
+    background-color:#bfbfbf;
+    color:#bfbfbf;
+    border-radius:10px;
+}
+.QDialog
+{
+    background-color:#bfbfbf;
+    color:#bfbfbf;
+    border-radius:10px;
+}
+.QInputDialog
+{
+    background-color:#bfbfbf;
+    border-radius:10px;
+    color:#bfbfbf;
+}
+.QLabel
+{
+    color:#000000;
+    font: 8pt "幼圆";
+}
+QLineEdit
+{
+    border-width:1px;
+    border-radius:5px;
+    border-style:outset;
+    font-size:20px;
+    color:black;
+    border:1px solid gray;
+}
+QLineEdit:hover
+{
+    border-width:1px;
+    border-radius:5px;
+    border-style:outset;
+    font-size:10px;
+    color:black;
+    border:1px solid #409eff;
+}
+.QPushButton{
+    border-style: none;
+    border: 0px;
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius:10px;
+    background: #409eff;
+}
+.QPushButton:hover{
+    color: #409eff;
+    background: #FFFFFF;
+}
+.QPushButton:pressed{
+    color: #FFFFFF;
+    background: #409eff;
+}

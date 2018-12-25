@@ -2,7 +2,7 @@
 {
     background-color:#3f3c37;
 }
-QLineEdit
+.QLineEdit
 {
     border-width:3px;
     border-radius:20px;
@@ -11,7 +11,7 @@ QLineEdit
     color:black;
     border:2px solid gray;
 }
-QLineEdit:hover
+.QLineEdit:hover
 {
     border-width:3px;
     border-radius:20px;
@@ -170,4 +170,28 @@ QScrollBar::add-page:horizontal{
 }
 QScrollBar::sub-page:horizontal{
     background:rgb(255,255,255);
+}
+
+
+QComboBox,QDateEdit,QDateTimeEdit,QTimeEdit,QDoubleSpinBox,QSpinBox{
+        border-radius: 3px;
+        padding: 1px 5px 1px 5px;
+        border: 1px solid #00beac;
+        selection-background-color: #00beac;
+        border-radius:10px;
+}
+
+QComboBox::drop-down,QDateEdit::drop-down,QDateTimeEdit::drop-down,QTimeEdit::drop-down,QDoubleSpinBox::drop-down,QSpinBox::drop-down {
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        width: 15px;
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color: #00beac;
+        border-radius:10px;
+}
+
+QComboBox::down-arrow,QDateEdit[calendarPopup="true"]::down-arrow,QTimeEdit[calendarPopup="true"]::down-arrow,QDateTimeEdit[calendarPopup="true"]::down-arrow {
+        width:10px;
+        height:9px;
 }

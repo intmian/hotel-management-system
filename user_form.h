@@ -22,6 +22,8 @@
 #include <QDateTime>
 #include <QFileDialog>
 #include <QDir>
+#include <QAxObject>
+#include <QInputDialog>
 #include "sql_tool.h"
 #include "tip.h"
 namespace Ui {
@@ -64,6 +66,7 @@ public slots:
     void re_button_click(bool b);
     void search_button_click(bool b);
     void export_button_click(bool b);
+    void setting_button_click(bool b);
     bool translate(int to);  // 判断是否需要转换
     void updateDataTable();
     void in_in_click();

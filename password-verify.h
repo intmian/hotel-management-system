@@ -1,3 +1,6 @@
 #include <QCryptographicHash>
 #include <QString>
-bool IfPWDRight(QString passwordPlace,QString input);
+#include <QFile>
+#include <QDebug>
+#include <QSqlQuery>
+bool IfPWDRight(QString input, QSqlQuery qq, bool admin);

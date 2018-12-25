@@ -19,6 +19,7 @@
         <file alias="checkBox">check_box.qss</file>
         <file>general.qss</file>
         <file alias="line_text">line_text.qss</file>
+        <file alias="input">input_dailog.qss</file>
     </qresource>
     <qresource prefix="/icon">
         <file alias="in">icon/icon/arrow-d.png</file>
@@ -36,5 +37,7 @@
         <file alias="check_s">icon/icon/1441292784_170770.png</file>
         <file alias="check">icon/icon_s/1441292778_351283.png</file>
         <file alias="author">image/xiangqing.png</file>
+        <file alias="setting_s">icon/icon_s/setting.png</file>
+        <file alias="setting">icon/icon/setting.png</file>
     </qresource>
 </RCC>

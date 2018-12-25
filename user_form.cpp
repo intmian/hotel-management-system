@@ -4,18 +4,18 @@
 user_form::user_form(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::user_form),
-    use(6),
-    icon_add{"room","in","out","re","search","export"},
-    icon_s_add{"room_s","in_s","out_s","re_s","search_s","export_s"},
+    use(7),
+    icon_add{"room","in","out","re","search","export","setting"},
+    icon_s_add{"room_s","in_s","out_s","re_s","search_s","export_s","setting_s"},
     sql("setting.txt")
 {
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
     ui->setupUi(this);
     ui->out_money->setAlignment(Qt::AlignCenter);
-    buttons={ui->room_button,ui->in_button,ui->out_button,ui->reserve_button,ui->search_button,ui->export_button};
-    icons={ui->room_icon,ui->in_icon,ui->out_icon,ui->re_icon,ui->search_icon,ui->export_icon};
-    status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status};
+    buttons={ui->room_button,ui->in_button,ui->out_button,ui->reserve_button,ui->search_button,ui->export_button,ui->setting_button};
+    icons={ui->room_icon,ui->in_icon,ui->out_icon,ui->re_icon,ui->search_icon,ui->export_icon,ui->setting_icon};
+    status={ui->room_status,ui->in_status,ui->out_status,ui->reserve_status,ui->search_status,ui->export_status,ui->setting_status_status};
 
     model = new QStandardItemModel(ui->room_table_view);
     model->setColumnCount(7);
@@ -107,6 +107,7 @@ user_form::user_form(QWidget *parent) :
     SetObjectSS(ui->reserve_button,":/qss/button");
     SetObjectSS(ui->search_button,":/qss/button");
     SetObjectSS(ui->export_button,":/qss/button");
+    SetObjectSS(ui->setting_button,":/qss/button");
 
     SetLabelPic(ui->room_icon,"room_s");
     SetLabelPic(ui->in_icon,"in");
@@ -114,6 +115,7 @@ user_form::user_form(QWidget *parent) :
     SetLabelPic(ui->re_icon,"re");
     SetLabelPic(ui->search_icon,"search");
     SetLabelPic(ui->export_icon,"export");
+    SetLabelPic(ui->setting_icon,"setting");
     SetLabelPic(ui->author,"author");
     SetStatus(ui->room_status,true);
     SetStatus(ui->in_status,false);
@@ -121,6 +123,7 @@ user_form::user_form(QWidget *parent) :
     SetStatus(ui->reserve_status,false);
     SetStatus(ui->search_status,false);
     SetStatus(ui->export_status,false);
+    SetStatus(ui->setting_status_status,false);
 
     ui->interface_->tabBar()->hide();
 
@@ -144,6 +147,8 @@ user_form::user_form(QWidget *parent) :
     connect(ui->reserve_button,&ui->reserve_button->clicked,this,&this->re_button_click);
     connect(ui->search_button,&ui->search_button->clicked,this,&this->search_button_click);
     connect(ui->export_button,&ui->export_button->clicked,this,&this->export_button_click);
+    connect(ui->setting_button,&ui->setting_button->clicked,this,&this->setting_button_click);
+
 
     auto text = ui->in_roomId_text;
     auto room_level = ui->in_level_select;
@@ -296,10 +301,36 @@ void user_form::export_button_click(bool b)
     ui->interface_->setCurrentIndex(5);
 }
 
+void user_form::setting_button_click(bool b)
+{
+    QInputDialog dia(0);
+    dia.setCancelButtonText("取消");
+    dia.setOkButtonText("确认");
+    dia.setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
+    SetObjectSS(&dia,":/qss/input");
+    dia.setWindowTitle("输入密码");
+    dia.setLabelText("输入管理员密码");
+    dia.setInputMode(QInputDialog::TextInput);
+
+    if(dia.exec() == QInputDialog::Accepted)
+    {
+       qDebug() << dia.textValue();
+       if(!IfPWDRight(dia.textValue(),QSqlQuery(sql.db),true))
+           return;
+    }
+    else
+    {
+        return;
+    }
+    if(!translate(6))
+        return;
+    ui->interface_->setCurrentIndex(6);
+}
+
 bool user_form::translate(int to)
 {
     int before;
-    for (int i = 0;i != 6;i++)
+    for (int i = 0;i != 7;i++)
     {
         if (use[i])
         {
@@ -570,6 +601,7 @@ void user_form::re_confirm_click()
 
 void user_form::search_id_click()
 {
+    ui->search_out_text->clear();
     QString id = ui->search_id_text->text();
     QString cmd = "select *\
             from people\
@@ -595,6 +627,7 @@ void user_form::search_id_click()
 
 void user_form::search_name_click()
 {
+    ui->search_out_text->clear();
     QString name = ui->search_name_text->text();
     QString cmd =
 "select * \
@@ -621,6 +654,7 @@ where people.people_name= '%1'";
 
 void user_form::search_group_click()
 {
+    ui->search_out_text->clear();
     QString group = ui->search_group_text->text();
     QString cmd =
 "select * \
@@ -650,12 +684,14 @@ void user_form::export_export()
     QString where = ui->export_where_text->text();
     QSqlQuery qSqlQuery(sql.db);
     qSqlQuery.exec("select * from money");
+    int money_sum = 0;
     while(qSqlQuery.next())
     {
         before = qSqlQuery.value(0).toString().trimmed();
         after = qSqlQuery.value(1).toString().trimmed();
         id = qSqlQuery.value(2).toString().trimmed();
         money = qSqlQuery.value(3).toInt();
+        money_sum += money;
     }
 
 }
