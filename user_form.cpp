@@ -12,6 +12,7 @@ user_form::user_form(QWidget *parent) :
     setWindowIcon(QIcon(":/icon/icon/icon/jiudian.png"));
     setWindowFlags((Qt::FramelessWindowHint));//设置窗体无边框
     setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
+    ui->room_table_view->resize(ui->room_tab->size());
     ui->setupUi(this);
     ui->out_money->setAlignment(Qt::AlignCenter);
     buttons={ui->room_button,ui->in_button,ui->out_button,ui->reserve_button,ui->search_button,ui->export_button,ui->setting_button};
