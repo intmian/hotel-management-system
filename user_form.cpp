@@ -193,6 +193,10 @@ user_form::user_form(QWidget *parent) :
     connect(ui->search_id,&ui->search_id->clicked,this,&search_id_click);
     connect(ui->search_group,&ui->search_group->clicked,this,&search_group_click);
     connect(ui->export_export,&ui->export_export->clicked,this,&this->export_export);
+
+    connect(ui->setting_room_type_but,&ui->setting_room_type_but->clicked,this,&this->update_com);
+    connect(ui->setting_confirm_text,&ui->setting_confirm_text->clicked,this,&this->update_com);
+    connect(ui->setting_confirm_text,&ui->setting_confirm_text->clicked,this,&this->update_com);
 }
 // add check
 user_form::~user_form()
@@ -260,6 +264,16 @@ void user_form::SetStatus(QLabel *status, bool ifUse)
         SetObjectSS(status,":/qss/status");
     }
 }
+
+void user_form::update_com()
+{
+    QSqlQuery sqq(sql.db);
+    sqq.exec("select level_price.level_name from level_price");
+    ui->setting_room_type->clear();
+    while (sqq.next()) {
+        ui->setting_room_type->addItem(sqq.value(0).toString());
+    }
+}
 void user_form::room_button_click(bool b)
 {
     updateDataTable();
@@ -323,9 +337,9 @@ void user_form::setting_button_click(bool b)
 
     if(dia.exec() == QInputDialog::Accepted)
     {
-       qDebug() << dia.textValue();
-       if(!IfPWDRight(dia.textValue(),QSqlQuery(sql.db),true))
-           return;
+        qDebug() << dia.textValue();
+        if(!IfPWDRight(dia.textValue(),QSqlQuery(sql.db),true))
+            return;
     }
     else
     {
@@ -460,7 +474,7 @@ void user_form::in_in_click()
 
     QString cmd;
     if (group_select)
-         cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7,'%8')").arg(
+        cmd = QString("update if_use set if_use = 1 from if_use where if_use.room_id = %1 insert into people values('%2','%3',%4,'%5') insert into live values('%6',%7,'%8')").arg(
                     QString(QString::number(room_id)),
                     people_id,
                     people_name,
@@ -522,8 +536,8 @@ void user_form::out_out_click()
         qDebug() << cmd;
         qq.exec(cmd);
         cmd = "insert into money \
-values('%1','%2','%3',%4)";
-        cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
+                values('%1','%2','%3',%4)";
+                cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
         qq.exec(cmd);
     }
     if(group_select)
@@ -536,8 +550,8 @@ values('%1','%2','%3',%4)";
             money_together += qq.value(0).toInt() * (int)qq.value(1).toDate().daysTo(QDate::currentDate());
             int money = qq.value(0).toInt() * (int)qq.value(1).toDate().daysTo(QDate::currentDate());
             QString cmd = "insert into money \
-values('%1','%2','%3',%4)";
-            QString money_ = QString::number(money);
+                    values('%1','%2','%3',%4)";
+                    QString money_ = QString::number(money);
             if (money == 0)
                 money_ = "0";
             cmd = cmd.arg(qq.value(1).toDate().toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),qq.value(2).toString().trimmed(),money_);
@@ -615,7 +629,7 @@ void user_form::search_id_click()
     QString cmd = "select *\
             from people\
             where people.id= '%1'";
-    cmd = cmd.arg(id);
+            cmd = cmd.arg(id);
     qDebug() << cmd;
     QSqlQuery qq(sql.db);
     qq.exec(cmd);
@@ -639,10 +653,10 @@ void user_form::search_name_click()
     ui->search_out_text->clear();
     QString name = ui->search_name_text->text();
     QString cmd =
-"select * \
-from people \
-where people.people_name= '%1'";
-    cmd = cmd.arg(name);
+            "select * \
+            from people \
+            where people.people_name= '%1'";
+            cmd = cmd.arg(name);
     qDebug() << cmd;
     QSqlQuery qq(sql.db);
     qq.exec(cmd);
@@ -666,10 +680,10 @@ void user_form::search_group_click()
     ui->search_out_text->clear();
     QString group = ui->search_group_text->text();
     QString cmd =
-"select * \
-from people \
-where people.[group]= '%1'";
-    cmd = cmd.arg(group);
+            "select * \
+            from people \
+            where people.[group]= '%1'";
+            cmd = cmd.arg(group);
     qDebug() << cmd;
     QSqlQuery qq(sql.db);
     qq.exec(cmd);
@@ -688,24 +702,51 @@ void user_form::export_export()
     QString before;
     QString after;
     QString id;
-    int money;
-    QString name = ui->export_name_text->text();
-    QString where = ui->export_where_text->text();
+    QString money;
     QSqlQuery qSqlQuery(sql.db);
     qSqlQuery.exec("select * from money");
-    int money_sum = 0;
     QAxObject excel("Excel.Application");//连接Excel控件
     excel.setProperty("Visible", false);// 不显示窗体
-    excel->setProperty("DisplayAlerts", false);  // 不显示任何警告信息。如果为true, 那么关闭时会出现类似"文件已修改，是否保存"的提示
+    excel.setProperty("DisplayAlerts", false);  // 不显示任何警告信息。如果为true, 那么关闭时会出现类似"文件已修改，是否保存"的提示
+    QAxObject* workbooks = excel.querySubObject("WorkBooks"); // 获取工作簿集合
+    workbooks->dynamicCall("Add"); // 新建一个工作簿
+    QAxObject* workbook = excel.querySubObject("ActiveWorkBook"); // 获取当前工作簿
+    QAxObject* worksheet = workbook->querySubObject("WorkSheets(int)", 1);
+    auto set_cell = [worksheet](const QString& h,int s,QString data)
+    {
+        QString place;
+        if (s == 0)
+            place = h+"0";
+        else
+        {
+            place = h+QString::number(s);
+        }
+        QAxObject *range2 = worksheet->querySubObject("Range(QString)", place);
+        range2->setProperty("Value", data);
+    };
+
+    int i = 1;
+    set_cell("A",i,"入住时间");
+    set_cell("B",i,"离开时间");
+    set_cell("C",i,"身份证");
+    set_cell("D",i,"开销");
     while(qSqlQuery.next())
     {
-        before = qSqlQuery.value(0).toString().trimmed();
-        after = qSqlQuery.value(1).toString().trimmed();
+        i++;
+        before = qSqlQuery.value(0).toDate().toString("yy-MM-dd").trimmed();
+        after = qSqlQuery.value(1).toDate().toString("yy-MM-dd").trimmed();
         id = qSqlQuery.value(2).toString().trimmed();
-        money = qSqlQuery.value(3).toInt();
-        money_sum += money;
+        money = qSqlQuery.value(3).toString().trimmed();
+        set_cell("A",i,before);
+        set_cell("B",i,after);
+        set_cell("C",i,id);
+        set_cell("D",i,money);
     }
-
+    QString fileName = QFileDialog::getSaveFileName(NULL, QStringLiteral("保存文件"), QStringLiteral("excel名称"), QStringLiteral("EXCEL(*.xlsx)"));
+    //QString fileName=QStringLiteral("C:/Users/lixc/Desktop/excel名称.xlsx");
+    workbook->dynamicCall("SaveAs(const QString&)", QDir::toNativeSeparators(fileName)); //保存到filepath
+    workbook->dynamicCall("Close (Boolean)", false);  //关闭文件
+    excel.dynamicCall("Quit(void)");  //退出
 }
 
 

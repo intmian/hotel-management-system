@@ -58,7 +58,7 @@ private:
 
     std::vector<QString> icon_add;
     std::vector<QString> icon_s_add;
-
+    void update_com();
 public slots:
     void room_button_click(bool b);
     void in_button_click(bool b);

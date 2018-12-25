@@ -244,7 +244,7 @@
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>310</y>
+       <y>300</y>
        <width>150</width>
        <height>40</height>
       </rect>
@@ -317,7 +317,7 @@
        <x>340</x>
        <y>60</y>
        <width>221</width>
-       <height>201</height>
+       <height>301</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -667,60 +667,14 @@ font: 20pt &quot;幼圆&quot;;</string>
     <widget class="QPushButton" name="export_export">
      <property name="geometry">
       <rect>
-       <x>205</x>
-       <y>300</y>
+       <x>200</x>
+       <y>160</y>
        <width>151</width>
        <height>41</height>
       </rect>
      </property>
      <property name="text">
-      <string>一键导出</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="export_where_text">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>60</y>
-       <width>201</width>
-       <height>41</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="export_name_text">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>190</y>
-       <width>201</width>
-       <height>41</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>30</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>地址</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_10">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>160</y>
-       <width>81</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>文件名</string>
+      <string>一键导出excel</string>
      </property>
     </widget>
    </widget>
@@ -761,7 +715,7 @@ QLineEdit:hover
       <string>房间类型</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="setting_user_text">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -771,10 +725,10 @@ QLineEdit:hover
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="setting_user_but">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>115</x>
        <y>60</y>
        <width>131</width>
        <height>31</height>
@@ -784,7 +738,7 @@ QLineEdit:hover
       <string>改变密码</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="setting_admin_text">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -820,10 +774,10 @@ QLineEdit:hover
       <string>user</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="setting_admin_but">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>115</x>
        <y>150</y>
        <width>131</width>
        <height>31</height>
@@ -833,7 +787,7 @@ QLineEdit:hover
       <string>改变密码</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="setting_add_room_type_text">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -856,7 +810,7 @@ QLineEdit:hover
       <string>价格</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_4">
+    <widget class="QLineEdit" name="setting_room_price_text">
      <property name="geometry">
       <rect>
        <x>390</x>
@@ -866,20 +820,20 @@ QLineEdit:hover
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="setting_confirm_text">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>190</x>
        <y>240</y>
-       <width>141</width>
+       <width>261</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>添加/更改房间类型</string>
+      <string>添加房间类型或改变类型的价格</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="setting_room_type_but">
      <property name="geometry">
       <rect>
        <x>390</x>
@@ -889,10 +843,10 @@ QLineEdit:hover
       </rect>
      </property>
      <property name="text">
-      <string>改变类型价格</string>
+      <string>改变房间类型</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_5">
+    <widget class="QLineEdit" name="setting_room_id_text">
      <property name="geometry">
       <rect>
        <x>360</x>
@@ -928,7 +882,7 @@ QLineEdit:hover
       <string>房间类型</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="in_level_select_2">
+    <widget class="QComboBox" name="setting_room_type">
      <property name="geometry">
       <rect>
        <x>360</x>
@@ -938,7 +892,7 @@ QLineEdit:hover
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_6">
+    <widget class="QLineEdit" name="setting_sourse_pwd">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -987,7 +941,7 @@ QLineEdit:hover
       <string>数据源账号</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_7">
+    <widget class="QLineEdit" name="settting_sourse">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -997,7 +951,7 @@ QLineEdit:hover
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_8">
+    <widget class="QLineEdit" name="setting_sourse_account">
      <property name="geometry">
       <rect>
        <x>390</x>
@@ -1007,7 +961,7 @@ QLineEdit:hover
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="setting_sourse_but">
      <property name="geometry">
       <rect>
        <x>240</x>
