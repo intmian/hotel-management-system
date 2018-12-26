@@ -538,8 +538,8 @@ void user_form::out_out_click()
         qDebug() << cmd;
         qq.exec(cmd);
         cmd = "insert into money \
-                values('%1','%2','%3',%4)";
-        cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
+values('%1','%2','%3',%4)";
+        cmd = cmd.arg(before.toString("yy-MM-dd"),QDate::currentDate().toString("yy-MM-dd"),id,money);
         qq.exec(cmd);
     }
     if(group_select)
