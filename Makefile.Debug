@@ -130,23 +130,29 @@ debug/qrc_res.cpp: res.qrc \
 		people_2.png \
 		loading.gif \
 		image/LC_icon_down_fill.png \
+		icon/icon/setting.png \
 		icon/icon/1441292784_170770.png \
-		icon/icon_s/export_s.png \
-		icon/icon/search.png \
-		icon/icon_s/phone_s.png \
-		icon/icon_s/arrow-d_s.png \
-		icon/icon_s/arrow-u_s.png \
-		icon/icon/house.png \
-		icon/icon_s/search_s.png \
-		icon/icon/export.png \
-		icon/icon_s/house_s.png \
-		icon/icon/phone.png \
-		icon/icon_s/1441292778_351283.png \
-		image/xiangqing.png \
-		icon/icon/arrow-d.png \
 		icon/icon/arrow-u.png \
+		icon/icon/phone.png \
+		icon/icon/Login-Form.png \
+		icon/icon_s/house_s.png \
+		icon/icon/house.png \
+		icon/icon_s/phone_s.png \
+		icon/icon/search.png \
+		image/xiangqing.png \
+		icon/icon_s/arrow-u_s.png \
+		icon/icon_s/1441292778_351283.png \
+		icon/icon_s/setting.png \
+		icon/icon/export.png \
+		icon/icon_s/arrow-d_s.png \
+		icon/icon_s/search_s.png \
+		icon/icon_s/export_s.png \
+		icon/icon/arrow-d.png \
+		icon/icon/jiudian.png \
+		icon/icon/excel-iocn.png \
 		widget.qss \
 		button_selected.qss \
+		input_dailog.qss \
 		line_text.qss \
 		general.qss \
 		status.qss \
@@ -293,6 +299,7 @@ debug/moc_mainwindow.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QPropertyAn
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QMouseEvent \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QThread \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QIcon \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QTimer \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtimer.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbasictimer.h \
@@ -318,6 +325,13 @@ debug/moc_mainwindow.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QPropertyAn
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/QAxObject \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxobject.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxbase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QInputDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qinputdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
@@ -492,6 +506,13 @@ debug/moc_user_form.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/QAxObject \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxobject.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxbase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QInputDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qinputdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QPropertyAnimation \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qpropertyanimation.h \
@@ -505,6 +526,7 @@ debug/moc_user_form.cpp: D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qinputmethod.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
 		mainwindow.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QIcon \
 		user_form.h \
 		tip.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
@@ -803,6 +825,7 @@ debug/main.o: main.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QMouseEvent \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QThread \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QIcon \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QTimer \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtimer.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbasictimer.h \
@@ -828,6 +851,13 @@ debug/main.o: main.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/QAxObject \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxobject.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxbase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QInputDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qinputdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
@@ -980,6 +1010,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QMouseEvent \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QThread \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QIcon \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QTimer \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtimer.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbasictimer.h \
@@ -1005,6 +1036,13 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/QAxObject \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxobject.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxbase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QInputDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qinputdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
@@ -1049,12 +1087,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qstyle.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qtabbar.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qrubberband.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLineEdit \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLineEdit
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
 debug/password-verify.o: password-verify.cpp password-verify.h \
@@ -1278,6 +1311,13 @@ debug/user_form.o: user_form.cpp user_form.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/QAxObject \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxobject.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxbase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QInputDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qinputdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QPropertyAnimation \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qpropertyanimation.h \
@@ -1291,6 +1331,7 @@ debug/user_form.o: user_form.cpp user_form.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qinputmethod.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QDialog \
 		mainwindow.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QIcon \
 		password-verify.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QCryptographicHash \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qcryptographichash.h \
@@ -1334,11 +1375,6 @@ debug/user_form.o: user_form.cpp user_form.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qitemselectionmodel.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QLineEdit \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
-		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QRadioButton \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qradiobutton.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QTabWidget \
@@ -1485,6 +1521,7 @@ debug/sql_tool.o: sql_tool.cpp sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QMouseEvent \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QThread \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/QIcon \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QTimer \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qtimer.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/qbasictimer.h \
@@ -1509,6 +1546,13 @@ debug/sql_tool.o: sql_tool.cpp sql_tool.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/QAxObject \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxobject.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/ActiveQt/qaxbase.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/QInputDialog \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qinputdialog.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtWidgets/qlineedit.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextcursor.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextformat.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qpen.h \
+		D:/soft/qt/5.9.6/mingw53_32/include/QtGui/qtextoption.h \
 		tip.h \
 		D:/soft/qt/5.9.6/mingw53_32/include/QtCore/QString \
 		password-verify.h \

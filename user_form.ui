@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>772</width>
-    <height>462</height>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>20</y>
+     <y>30</y>
      <width>581</width>
      <height>421</height>
     </rect>
@@ -39,9 +39,9 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>10</y>
+       <y>0</y>
        <width>571</width>
-       <height>381</height>
+       <height>391</height>
       </rect>
      </property>
      <property name="autoFillBackground">
@@ -719,7 +719,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>20</y>
+       <y>10</y>
        <width>201</width>
        <height>31</height>
       </rect>
@@ -729,7 +729,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>70</y>
+       <y>60</y>
        <width>131</width>
        <height>31</height>
       </rect>
@@ -742,7 +742,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>120</y>
+       <y>110</y>
        <width>201</width>
        <height>31</height>
       </rect>
@@ -752,7 +752,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>110</y>
+       <y>102</y>
        <width>121</width>
        <height>40</height>
       </rect>
@@ -765,7 +765,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>15</y>
        <width>101</width>
        <height>21</height>
       </rect>
@@ -778,7 +778,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>170</y>
+       <y>160</y>
        <width>131</width>
        <height>31</height>
       </rect>
@@ -791,7 +791,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>270</y>
+       <y>260</y>
        <width>171</width>
        <height>31</height>
       </rect>
@@ -801,7 +801,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>390</x>
-       <y>230</y>
+       <y>225</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -814,7 +814,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>390</x>
-       <y>270</y>
+       <y>260</y>
        <width>171</width>
        <height>31</height>
       </rect>
@@ -824,7 +824,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>330</y>
+       <y>320</y>
        <width>261</width>
        <height>31</height>
       </rect>
@@ -837,7 +837,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>390</x>
-       <y>170</y>
+       <y>160</y>
        <width>141</width>
        <height>31</height>
       </rect>
@@ -850,7 +850,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>360</x>
-       <y>20</y>
+       <y>10</y>
        <width>201</width>
        <height>31</height>
       </rect>
@@ -860,7 +860,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>270</x>
-       <y>20</y>
+       <y>10</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -873,7 +873,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>270</x>
-       <y>120</y>
+       <y>110</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -886,7 +886,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>360</x>
-       <y>120</y>
+       <y>110</y>
        <width>201</width>
        <height>31</height>
       </rect>
@@ -896,7 +896,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>240</y>
+       <y>230</y>
        <width>151</width>
        <height>21</height>
       </rect>
@@ -912,7 +912,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>240</y>
+       <y>230</y>
        <width>161</width>
        <height>21</height>
       </rect>
@@ -928,7 +928,7 @@ QLineEdit:hover
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>270</y>
+       <y>260</y>
        <width>201</width>
        <height>31</height>
       </rect>
